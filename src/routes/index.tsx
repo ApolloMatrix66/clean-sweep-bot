@@ -1,13 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight,
+  BatteryCharging,
   Check,
   ChevronDown,
   CircleCheck,
+  Droplets,
+  Gauge,
+  HardDrive,
+  LockKeyhole,
+  Menu,
+  PackageCheck,
+  PlugZap,
   ShieldCheck,
   Sparkles,
   Star,
-  Truck,
+  Usb,
+  X,
   Zap,
 } from "lucide-react";
 import { useState } from "react";
@@ -18,13 +27,50 @@ export const Route = createFileRoute("/")({
 
 const CHECKOUT_URL = import.meta.env.VITE_CHECKOUT_URL || "";
 
-const benefits = [
-  { icon: Zap, title: "Prático no dia a dia", text: "Ideal para aquela limpeza rápida sem precisar tirar um aspirador grande do armário." },
-  { icon: Sparkles, title: "Alcance os cantos", text: "Ajuda a remover poeira, migalhas e pequenas sujeiras de áreas difíceis." },
-  { icon: ShieldCheck, title: "Compacto e fácil de guardar", text: "Um formato pensado para ocupar pouco espaço quando não estiver em uso." },
+const heroSpecs = [
+  { image: "/a2.jpg", title: "20.000Pa", text: "Alta força de sucção" },
+  { image: "/a3.jpg", title: "96.000 RPM", text: "Motor sem escovas" },
+  { image: "/a4.jpg", title: "180ml", text: "Reservatório amplo" },
+  { image: "/a5.jpg", title: "USB-C", text: "Recarga prática" },
+  { image: "/a6.jpg", title: "Multiuso", text: "Carro, sofá e casa" },
+  { image: "/a7.jpg", title: "Compacto", text: "Fácil de guardar" },
+  { image: "/a8.jpg", title: "5 bicos", text: "Para diferentes tarefas" },
+  { image: "/a9.jpg", title: "Portátil", text: "Limpeza onde precisar" },
 ];
 
-const uses = ["Sofá e estofados", "Carro", "Teclado e mesa", "Cantos e frestas", "Migalhas", "Pequenas sujeiras"];
+const beforeAfter = [
+  { image: "/c1.jpg", label: "Sofás e estofados", text: "Migalhas, poeira e sujeiras do dia a dia." },
+  { image: "/c2.jpg", label: "Bancos do carro", text: "Limpe areia e resíduos sem desmontar nada." },
+  { image: "/c3.jpg", label: "Frestas difíceis", text: "Alcance espaços que normalmente acumulam sujeira." },
+  { image: "/c4.jpg", label: "Colchões e tecidos", text: "Uma ajuda prática para a manutenção da limpeza." },
+  { image: "/c5.jpg", label: "Detalhes e cantos", text: "Acabamento rápido onde o aspirador comum não chega." },
+];
+
+const performance = [
+  { image: "/b0.jpg", icon: Gauge, eyebrow: "POTÊNCIA", title: "20.000Pa de sucção", text: "Força de sucção projetada para lidar com poeira, areia, migalhas e pequenas sujeiras em diferentes superfícies." },
+  { image: "/b1.jpg", icon: Zap, eyebrow: "MOTOR", title: "Até 96.000 RPM", text: "Motor sem escovas para entregar alto desempenho em um corpo compacto e fácil de manusear." },
+  { image: "/b2.jpg", icon: Droplets, eyebrow: "CAPACIDADE", title: "Reservatório de 180ml", text: "Mais espaço para acumular a sujeira antes de precisar esvaziar o reservatório." },
+  { image: "/b3.jpg", icon: BatteryCharging, eyebrow: "BATERIA", title: "Modos otimizados", text: "Escolha a intensidade adequada para cada tarefa e aproveite melhor a autonomia disponível." },
+  { image: "/b4.jpg", icon: HardDrive, eyebrow: "PROTEÇÃO", title: "Estojo rígido", text: "Organização e proteção para guardar o aparelho e seus acessórios com mais praticidade." },
+  { image: "/b5.jpg", icon: PackageCheck, eyebrow: "MANUTENÇÃO", title: "Guia de cuidados", text: "Orientações para limpeza, manutenção e resolução de dúvidas durante o uso." },
+];
+
+const accessories = [
+  { image: "/b6.jpg", title: "Bico para frestas", text: "Para cantos estreitos e espaços difíceis." },
+  { image: "/b7.jpg", title: "Bico de escova", text: "Para superfícies e tecidos que pedem mais delicadeza." },
+  { image: "/b8.jpg", title: "Bico multiuso", text: "Versatilidade para diferentes situações do cotidiano." },
+  { image: "/b9.png", title: "Acessório extra", text: "Mais possibilidades para adaptar a limpeza à tarefa." },
+  { image: "/a8.jpg", title: "Conjunto de acessórios", text: "Tenha as ferramentas certas sempre à mão." },
+];
+
+const faqs = [
+  ["Onde posso usar o TurboClean Pro Max?", "Ele foi pensado para limpezas rápidas em locais como carro, sofá, bancos, frestas, mesas, colchões e outros espaços compatíveis com o uso de um aspirador portátil."],
+  ["O que significa 20.000Pa?", "É uma medida de pressão de sucção usada para indicar a capacidade de aspiração. Na prática, o produto foi projetado para ajudar a remover poeira, areia, migalhas e pequenas sujeiras."],
+  ["Como faço a recarga?", "O aparelho utiliza recarga via USB-C. Use uma fonte e cabo compatíveis com as orientações do fabricante."],
+  ["O reservatório é fácil de limpar?", "Sim. A proposta do reservatório removível é facilitar o descarte da sujeira e a manutenção do aparelho. Siga sempre o manual do produto."],
+  ["O produto vem com acessórios?", "Sim. A página apresenta um conjunto de 5 bicos/acessórios para diferentes necessidades de limpeza."],
+  ["Como comprar?", "Clique em qualquer botão de compra. O botão leva ao checkout configurado para finalizar o pedido com segurança."],
+];
 
 function goToCheckout() {
   if (CHECKOUT_URL) {
@@ -34,171 +80,331 @@ function goToCheckout() {
   document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
 }
 
+function ProductImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      className={`h-full w-full object-cover ${className}`}
+    />
+  );
+}
+
 function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#fafaf8] text-[#171717]">
-      <div className="bg-[#171717] px-4 py-2.5 text-center text-xs font-semibold tracking-wide text-white sm:text-sm">
-        <span className="mr-1.5 inline-flex align-middle"><Truck className="h-4 w-4" /></span>
-        Oferta online • Pagamento seguro • Envio para todo o Brasil
+    <main className="min-h-screen overflow-x-hidden bg-[#f4f4f2] text-[#111111] pb-20 sm:pb-0">
+      <div className="bg-[#0b0b0c] px-4 py-2.5 text-center text-[11px] font-bold uppercase tracking-[0.12em] text-white sm:text-xs">
+        <span className="text-white/60">TurboClean Pro Max</span>
+        <span className="mx-2 text-white/25">•</span>
+        <span>Limpeza potente onde você precisar</span>
       </div>
 
-      <header className="border-b border-black/5 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <div className="text-lg font-black tracking-tight">CLEAN<span className="text-emerald-600">SWEEP</span></div>
-          <button onClick={goToCheckout} className="hidden rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-extrabold text-white shadow-sm transition hover:bg-emerald-600 sm:block">
-            Comprar agora
-          </button>
+      <header className="sticky top-0 z-50 border-b border-black/10 bg-white/90 backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
+          <a href="#inicio" className="flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#111] text-white">
+              <Zap className="h-5 w-5 fill-current" />
+            </span>
+            <span className="text-sm font-black uppercase tracking-tight sm:text-base">
+              TurboClean <span className="text-neutral-500">Pro Max</span>
+            </span>
+          </a>
+
+          <nav className="hidden items-center gap-7 text-sm font-semibold text-neutral-600 md:flex">
+            <a href="#desempenho" className="transition hover:text-black">Desempenho</a>
+            <a href="#antes-depois" className="transition hover:text-black">Aplicações</a>
+            <a href="#acessorios" className="transition hover:text-black">Acessórios</a>
+            <a href="#faq" className="transition hover:text-black">Dúvidas</a>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={goToCheckout}
+              className="hidden rounded-full bg-[#111] px-5 py-2.5 text-xs font-black text-white transition hover:-translate-y-0.5 hover:bg-black sm:block"
+            >
+              Garantir com Desconto
+            </button>
+            <button
+              aria-label="Abrir menu"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="rounded-xl p-2 md:hidden"
+            >
+              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
+
+        {menuOpen && (
+          <div className="border-t border-black/5 bg-white px-5 py-4 md:hidden">
+            <div className="flex flex-col gap-4 text-sm font-bold">
+              <a onClick={() => setMenuOpen(false)} href="#desempenho">Desempenho</a>
+              <a onClick={() => setMenuOpen(false)} href="#antes-depois">Aplicações</a>
+              <a onClick={() => setMenuOpen(false)} href="#acessorios">Acessórios</a>
+              <a onClick={() => setMenuOpen(false)} href="#faq">Dúvidas</a>
+              <button onClick={goToCheckout} className="rounded-xl bg-[#111] px-4 py-3 text-white">
+                Garantir com Desconto
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
-      <section className="relative">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-10 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
+      <section id="inicio" className="bg-[#f4f4f2]">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-10 sm:py-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:py-20">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-xs font-bold text-emerald-700">
-              <CircleCheck className="h-4 w-4" /> Mais praticidade para a sua rotina
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3.5 py-2 text-[11px] font-black uppercase tracking-wider text-neutral-700 shadow-sm">
+              <CircleCheck className="h-4 w-4" /> Potência compacta para o dia a dia
             </div>
-            <h1 className="max-w-xl text-4xl font-black leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-              Limpeza rápida, sem esforço e sem ocupar espaço.
+            <h1 className="max-w-2xl text-[42px] font-black leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-[72px]">
+              O Fim do Carro e Estofados Sujos em Segundos
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-7 text-neutral-600 sm:text-lg">
-              Um aspirador portátil para remover poeira, migalhas e pequenas sujeiras de onde você mais precisa — em poucos minutos.
+            <p className="mt-6 max-w-xl text-base leading-7 text-neutral-600 sm:text-lg">
+              Areia no banco, migalhas no sofá, poeira nas frestas? O <strong className="text-neutral-900">TurboClean Pro Max</strong> coloca potência de limpeza na sua mão, sem depender de um aspirador grande para cada sujeira do cotidiano.
             </p>
 
-            <div className="mt-7 flex flex-wrap items-end gap-x-5 gap-y-2">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-neutral-500">Por apenas</p>
-                <p className="text-4xl font-black tracking-tight text-emerald-600">R$ 89,90</p>
-              </div>
-              <div className="pb-1 text-sm text-neutral-500">
-                <span className="font-semibold text-neutral-700">Oferta online</span><br />pagamento seguro
-              </div>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <button
+                onClick={goToCheckout}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#111] px-7 py-4 text-sm font-black text-white shadow-xl shadow-black/15 transition hover:-translate-y-0.5 sm:w-auto"
+              >
+                GARANTIR COM DESCONTO <ArrowRight className="h-5 w-5" />
+              </button>
+              <a href="#desempenho" className="inline-flex w-full items-center justify-center rounded-2xl border border-black/10 bg-white px-6 py-4 text-sm font-black text-neutral-800 sm:w-auto">
+                Ver detalhes
+              </a>
             </div>
 
-            <button onClick={goToCheckout} className="mt-7 flex w-full max-w-md items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-7 py-4 text-base font-black text-white shadow-[0_12px_30px_-12px_rgba(16,185,129,.7)] transition hover:-translate-y-0.5 hover:bg-emerald-600 sm:w-auto">
-              QUERO MEU ASPIRADOR <ArrowRight className="h-5 w-5" />
-            </button>
-            <p className="mt-3 max-w-md text-center text-xs text-neutral-500 sm:text-left">
-              Você será direcionado ao checkout para finalizar seu pedido.
-            </p>
-
-            <div className="mt-7 grid max-w-md grid-cols-3 gap-3 border-t border-black/10 pt-5 text-xs font-semibold text-neutral-600">
-              <div><ShieldCheck className="mb-1 h-5 w-5 text-emerald-600" />Compra segura</div>
-              <div><Truck className="mb-1 h-5 w-5 text-emerald-600" />Envio nacional</div>
-              <div><Check className="mb-1 h-5 w-5 text-emerald-600" />Oferta online</div>
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-xs font-bold text-neutral-600">
+              <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4" /> Compra segura</span>
+              <span className="inline-flex items-center gap-2"><Usb className="h-4 w-4" /> USB-C</span>
+              <span className="inline-flex items-center gap-2"><PackageCheck className="h-4 w-4" /> 5 acessórios</span>
             </div>
           </div>
 
           <div className="relative">
-            <div className="absolute inset-6 rounded-full bg-emerald-100/70 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-black/5 bg-white p-3 shadow-2xl shadow-black/10">
-              <img
-                src="https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=1100&q=85"
-                alt="Aspirador portátil"
-                className="aspect-[4/4.5] w-full rounded-[1.5rem] object-cover"
-              />
-              <div className="absolute bottom-7 left-7 rounded-2xl bg-white/95 px-4 py-3 shadow-lg backdrop-blur">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Oferta</p>
-                <p className="text-2xl font-black text-emerald-600">R$ 89,90</p>
+            <div className="absolute -inset-4 rounded-[3rem] bg-black/5 blur-2xl" />
+            <div className="relative overflow-hidden rounded-[2rem] bg-[#111] p-2 shadow-2xl shadow-black/20">
+              <div className="aspect-[4/4.6] overflow-hidden rounded-[1.5rem] bg-neutral-900">
+                <ProductImage src="/a0.png" alt="TurboClean Pro Max" />
+              </div>
+              <div className="absolute bottom-7 left-7 rounded-2xl border border-white/10 bg-black/80 px-4 py-3 text-white backdrop-blur-md">
+                <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/50">TurboClean</p>
+                <p className="text-lg font-black">Pro Max</p>
+              </div>
+              <div className="absolute right-7 top-7 rounded-full bg-white px-4 py-2 text-[10px] font-black uppercase tracking-wider text-black shadow-lg">
+                Alta performance
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-y border-black/10 bg-white">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-black/5 sm:grid-cols-4 lg:grid-cols-8">
+            {heroSpecs.map((spec) => (
+              <div key={spec.title} className="bg-white px-3 py-5 text-center">
+                <div className="mx-auto mb-3 h-14 w-14 overflow-hidden rounded-xl bg-neutral-100">
+                  <ProductImage src={spec.image} alt={spec.title} />
+                </div>
+                <p className="text-sm font-black">{spec.title}</p>
+                <p className="mt-1 text-[10px] font-semibold leading-4 text-neutral-500">{spec.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="antes-depois" className="bg-[#0b0b0c] px-5 py-16 text-white sm:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-white/45">Da sujeira para o cuidado</p>
+            <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] sm:text-6xl">A sujeira aparece. A solução também.</h2>
+            <p className="mt-5 text-base leading-7 text-white/60 sm:text-lg">
+              Não espere a próxima faxina para resolver uma sujeira simples. O TurboClean Pro Max foi pensado para aqueles momentos em que você quer limpar agora e seguir a vida.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {beforeAfter.map((item, index) => (
+              <article key={item.label} className={`group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] ${index === 0 ? "lg:col-span-2 lg:row-span-2" : ""}`}>
+                <div className={index === 0 ? "aspect-[4/4.5]" : "aspect-[4/4]"}><ProductImage src={item.image} alt={item.label} className="transition duration-500 group-hover:scale-105" /></div>
+                <div className="p-5">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">Aplicação</p>
+                  <h3 className="mt-2 text-lg font-black">{item.label}</h3>
+                  <p className="mt-2 text-sm leading-6 text-white/55">{item.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="desempenho" className="bg-[#e9e9e7] px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid items-end gap-6 lg:grid-cols-2">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">Engenharia para o cotidiano</p>
+              <h2 className="mt-3 text-4xl font-black tracking-[-0.04em] sm:text-6xl">Potência sem transformar a limpeza em esforço.</h2>
+            </div>
+            <p className="max-w-xl text-base leading-7 text-neutral-600 lg:justify-self-end">
+              Um conjunto de recursos pensado para entregar praticidade: motor de alta rotação, sucção de 20.000Pa, reservatório de 180ml, modos de bateria e acessórios para diferentes tarefas.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {performance.map(({ image, icon: Icon, eyebrow, title, text }) => (
+              <article key={title} className="overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
+                <div className="aspect-[16/10] bg-neutral-200"><ProductImage src={image} alt={title} /></div>
+                <div className="p-6">
+                  <div className="flex items-center gap-2 text-neutral-500">
+                    <Icon className="h-4 w-4" />
+                    <span className="text-[10px] font-black tracking-[0.2em]">{eyebrow}</span>
+                  </div>
+                  <h3 className="mt-3 text-2xl font-black tracking-tight">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-neutral-600">{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div className="overflow-hidden rounded-[2rem] bg-[#111]">
+              <ProductImage src="/b5.jpg" alt="Guia de manutenção do TurboClean Pro Max" />
+            </div>
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-neutral-500">Pensado para continuar fácil</p>
+              <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] sm:text-5xl">Potência é importante. Praticidade também.</h2>
+              <p className="mt-5 text-base leading-7 text-neutral-600">
+                Do armazenamento à manutenção, a experiência foi pensada para ser simples. Use, esvazie, cuide e deixe pronto para a próxima limpeza.
+              </p>
+              <div className="mt-7 space-y-4">
+                {[
+                  ["Estojo rígido", "Mais organização para aparelho e acessórios."],
+                  ["Guia de manutenção", "Orientações para conservar o desempenho."],
+                  ["USB-C", "Recarga prática com conexão amplamente utilizada."],
+                ].map(([title, text]) => (
+                  <div key={title} className="flex gap-4 rounded-2xl border border-black/10 p-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100"><Check className="h-5 w-5" /></div>
+                    <div><h3 className="font-black">{title}</h3><p className="mt-1 text-sm text-neutral-500">{text}</p></div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-black/5 bg-white">
-        <div className="mx-auto grid max-w-6xl gap-4 px-5 py-8 sm:grid-cols-3">
-          {benefits.map(({ icon: Icon, title, text }) => (
-            <div key={title} className="flex gap-4 rounded-2xl p-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600"><Icon className="h-5 w-5" /></div>
-              <div><h2 className="font-extrabold">{title}</h2><p className="mt-1 text-sm leading-6 text-neutral-500">{text}</p></div>
-            </div>
-          ))}
+      <section id="acessorios" className="bg-[#111112] px-5 py-16 text-white sm:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-2xl">
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-white/40">Versatilidade</p>
+            <h2 className="mt-3 text-4xl font-black tracking-[-0.04em] sm:text-6xl">Um bico certo para cada detalhe.</h2>
+            <p className="mt-5 text-white/55">Cinco opções para adaptar o fluxo de limpeza a diferentes superfícies, cantos e situações.</p>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {accessories.map((item) => (
+              <article key={item.title} className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
+                <div className="aspect-square bg-neutral-900"><ProductImage src={item.image} alt={item.title} /></div>
+                <div className="p-5">
+                  <h3 className="font-black">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-5 text-white/45">{item.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {[
+              [Usb, "Recarga USB-C", "Praticidade para recarregar."],
+              [LockKeyhole, "Uso protegido", "Design pensado para guardar e transportar."],
+              [Sparkles, "Limpeza multiuso", "Mais versatilidade no dia a dia."],
+            ].map(([Icon, title, text]) => {
+              const I = Icon as typeof Usb;
+              return <div key={title as string} className="rounded-2xl border border-white/10 p-5"><I className="h-5 w-5 text-white" /><h3 className="mt-3 font-black">{title as string}</h3><p className="mt-1 text-sm text-white/45">{text as string}</p></div>;
+            })}
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+      <section id="oferta" className="bg-[#f4f4f2] px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-[#0b0b0c] text-white shadow-2xl">
+          <div className="grid items-center lg:grid-cols-[1fr_0.8fr]">
+            <div className="p-7 sm:p-12 lg:p-14">
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-white/40">TurboClean Pro Max</p>
+              <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] sm:text-5xl">Chega de deixar a sujeira para depois.</h2>
+              <p className="mt-5 max-w-xl leading-7 text-white/55">Tenha uma solução portátil para cuidar dos detalhes que fazem diferença na aparência do seu carro e da sua casa.</p>
+              <div className="mt-7 space-y-3">
+                {["20.000Pa de sucção", "Motor de até 96.000 RPM", "Reservatório de 180ml", "5 bicos/acessórios", "Recarga USB-C"].map((item) => (
+                  <div key={item} className="flex items-center gap-3 text-sm font-bold"><span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-black"><Check className="h-4 w-4" /></span>{item}</div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 p-7 sm:p-10 lg:border-l lg:border-t-0">
+              <div className="rounded-3xl bg-white p-7 text-center text-black">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">Oferta online</p>
+                <p className="mt-2 text-5xl font-black tracking-tight">R$ 89,90</p>
+                <p className="mt-3 text-xs leading-5 text-neutral-500">As condições e formas de pagamento disponíveis serão apresentadas no checkout.</p>
+                <button onClick={goToCheckout} className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#111] px-5 py-4 text-sm font-black text-white transition hover:bg-black">
+                  GARANTIR COM DESCONTO <ArrowRight className="h-5 w-5" />
+                </button>
+                <div className="mt-4 flex items-center justify-center gap-2 text-[11px] font-bold text-neutral-500"><ShieldCheck className="h-4 w-4" /> Checkout seguro</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="bg-white px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-neutral-400">FAQ</p>
+            <h2 className="mt-3 text-4xl font-black tracking-tight">Perguntas frequentes</h2>
+          </div>
+          <div className="mt-10 divide-y divide-black/10 rounded-3xl border border-black/10">
+            {faqs.map(([question, answer], index) => (
+              <div key={question}>
+                <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="flex w-full items-center justify-between gap-5 px-5 py-5 text-left font-black sm:px-7">
+                  <span>{question}</span>
+                  <ChevronDown className={`h-5 w-5 shrink-0 transition-transform ${openFaq === index ? "rotate-180" : ""}`} />
+                </button>
+                {openFaq === index && <p className="px-5 pb-6 text-sm leading-6 text-neutral-600 sm:px-7">{answer}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-black/10 bg-[#0b0b0c] px-5 py-10 text-white">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-black uppercase tracking-[.2em] text-emerald-600">Feito para facilitar</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Aquela sujeira pequena não precisa virar uma faxina.</h2>
-            <p className="mt-4 text-base leading-7 text-neutral-600">
-              Tenha uma solução prática para usar sempre que aparecer uma sujeira pontual. Menos preparação, menos trabalho e mais agilidade.
-            </p>
-            <div className="mt-7 grid grid-cols-2 gap-3">
-              {uses.map((item) => (
-                <div key={item} className="flex items-center gap-2 rounded-xl border border-black/5 bg-white px-3 py-3 text-sm font-semibold shadow-sm">
-                  <Check className="h-4 w-4 shrink-0 text-emerald-600" /> {item}
-                </div>
-              ))}
+            <div className="flex items-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-black"><Zap className="h-5 w-5 fill-current" /></span>
+              <span className="font-black">TurboClean Pro Max</span>
             </div>
+            <p className="mt-3 max-w-md text-xs leading-5 text-white/40">Tecnologia e praticidade para uma limpeza mais rápida no dia a dia.</p>
           </div>
-          <div className="rounded-[2rem] bg-[#171717] p-8 text-white sm:p-10">
-            <p className="text-sm font-bold text-emerald-400">POR QUE ESCOLHER UM PORTÁTIL?</p>
-            <h3 className="mt-3 text-3xl font-black tracking-tight">Porque nem toda sujeira merece uma operação inteira.</h3>
-            <div className="mt-7 space-y-4">
-              {["Pegue, ligue e limpe.", "Ideal para sujeiras do cotidiano.", "Compacto para deixar sempre à mão."].map((item) => (
-                <div key={item} className="flex items-center gap-3 border-b border-white/10 pb-4 text-sm font-semibold">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500"><Check className="h-4 w-4" /></span>{item}
-                </div>
-              ))}
+          <div className="text-left text-xs text-white/40 sm:text-right">
+            <div className="mb-3 flex flex-wrap gap-4 sm:justify-end">
+              <span className="inline-flex items-center gap-1.5"><LockKeyhole className="h-3.5 w-3.5" /> Pagamento seguro</span>
+              <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5" /> Ambiente protegido</span>
             </div>
-            <button onClick={goToCheckout} className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-4 font-black transition hover:bg-emerald-400">
-              QUERO APROVEITAR A OFERTA <ArrowRight className="h-5 w-5" />
-            </button>
+            <p>© {new Date().getFullYear()} TurboClean Pro Max. Todos os direitos reservados.</p>
           </div>
         </div>
-      </section>
-
-      <section id="oferta" className="bg-[#171717] px-5 py-16 text-white sm:py-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex w-fit items-center gap-1 text-amber-400">
-            {[1,2,3,4,5].map((n) => <Star key={n} className="h-5 w-5 fill-current" />)}
-          </div>
-          <p className="mt-4 text-sm font-bold uppercase tracking-[.2em] text-emerald-400">Oferta especial online</p>
-          <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">Leve o seu Clean Sweep Bot</h2>
-          <p className="mx-auto mt-4 max-w-xl text-neutral-400">Uma solução compacta para deixar a limpeza do dia a dia muito mais simples.</p>
-          <div className="mx-auto mt-8 max-w-sm rounded-3xl bg-white p-7 text-[#171717] shadow-2xl">
-            <p className="text-xs font-black uppercase tracking-widest text-neutral-500">Por apenas</p>
-            <p className="mt-1 text-5xl font-black tracking-tight text-emerald-600">R$ 89,90</p>
-            <p className="mt-2 text-sm text-neutral-500">Condições de pagamento exibidas no checkout.</p>
-            <button onClick={goToCheckout} className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-5 py-4 font-black text-white transition hover:bg-emerald-600">
-              COMPRAR AGORA <ArrowRight className="h-5 w-5" />
-            </button>
-            <div className="mt-4 flex items-center justify-center gap-2 text-xs font-semibold text-neutral-500"><ShieldCheck className="h-4 w-4 text-emerald-600" /> Ambiente seguro para finalizar</div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-3xl px-5 py-16 sm:py-20">
-        <p className="text-center text-sm font-black uppercase tracking-[.2em] text-emerald-600">Dúvidas frequentes</p>
-        <h2 className="mt-3 text-center text-3xl font-black tracking-tight">Antes de comprar</h2>
-        <div className="mt-8 divide-y divide-black/10 rounded-2xl border border-black/5 bg-white">
-          {[
-            ["O produto é portátil?", "Sim. A proposta da página é um aspirador compacto para limpezas rápidas e pontuais."],
-            ["Onde posso usar?", "Em superfícies e situações compatíveis com o produto, como sofá, carro, mesa e cantos. Confira as especificações do modelo antes do uso."],
-            ["Como faço o pedido?", "Clique em qualquer botão de compra e você será direcionado ao checkout configurado para finalizar o pagamento."],
-            ["Quais são as formas de pagamento?", "As opções disponíveis serão mostradas diretamente no checkout."],
-          ].map(([q, a], i) => (
-            <div key={q}>
-              <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-bold">
-                {q}<ChevronDown className={`h-5 w-5 shrink-0 transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
-              </button>
-              {openFaq === i && <p className="px-5 pb-5 text-sm leading-6 text-neutral-600">{a}</p>}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <footer className="border-t border-black/5 bg-white px-5 py-8 text-center text-xs text-neutral-500">
-        <p className="font-bold text-neutral-700">Clean Sweep Bot</p>
-        <p className="mt-1">Página de oferta • Informações e condições conforme o produto e checkout configurados.</p>
       </footer>
 
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-white/95 p-3 shadow-[0_-8px_30px_-20px_rgba(0,0,0,.35)] backdrop-blur sm:hidden">
-        <button onClick={goToCheckout} className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3.5 text-sm font-black text-white">
-          COMPRAR POR R$ 89,90 <ArrowRight className="h-5 w-5" />
+      <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-black/10 bg-white/95 p-3 shadow-[0_-12px_35px_-20px_rgba(0,0,0,.35)] backdrop-blur sm:hidden">
+        <button onClick={goToCheckout} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#111] px-5 py-3.5 text-sm font-black text-white">
+          GARANTIR COM DESCONTO <ArrowRight className="h-5 w-5" />
         </button>
       </div>
     </main>
