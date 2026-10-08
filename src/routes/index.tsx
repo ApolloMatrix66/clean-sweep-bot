@@ -37,7 +37,6 @@ const painSections = [
     id: "carro",
     painImage: "/L2.jpg",
     solutionImage: "/L1.jpg",
-    eyebrow: "01 · CARRO",
     painTitle: "SEU CARRO FICA ASSIM MESMO DEPOIS DE LIMPAR?",
     painText:
       "Areia, migalhas e sujeira acabam presos no carpete, nos bancos e nas frestas onde o aspirador comum simplesmente não chega.",
@@ -53,7 +52,6 @@ const painSections = [
     id: "colchao",
     painImage: "/L3.jpg",
     solutionImage: "/L4.jpg",
-    eyebrow: "02 · COLCHÃO",
     painTitle: "VOCÊ LIMPA A CAMA... MAS E O QUE FICA ESCONDIDO?",
     painText:
       "Poeira e partículas podem se acumular no colchão e em outros tecidos ao longo do tempo.",
@@ -67,7 +65,6 @@ const painSections = [
     id: "estofado",
     painImage: "/L5.jpg",
     solutionImage: "/L6.jpg",
-    eyebrow: "03 · ESTOFADO",
     painTitle: "SEUS ESTOFADOS ESTÃO COMEÇANDO A FICAR ENCARDIDOS?",
     painText:
       "Poeira, farelos e sujeira se acumulam justamente nas áreas mais difíceis de alcançar.",
