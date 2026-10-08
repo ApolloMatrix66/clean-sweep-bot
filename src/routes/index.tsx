@@ -208,61 +208,43 @@ function ComparisonCard({
   item: (typeof comparisons)[number];
   index: number;
 }) {
+  const isReversed = index % 2 === 1;
+
   return (
-    <article className="border-t border-zinc-200 py-8 sm:py-10">
-      <div className="grid items-stretch gap-6 md:grid-cols-2 md:gap-10 lg:gap-14">
-        <div className="overflow-hidden rounded-[20px] bg-white">
+    <article className="border-t border-zinc-200 first:border-t-0 py-8 sm:py-10 lg:py-12">
+      <div className={`grid min-h-[360px] items-stretch md:grid-cols-2 ${isReversed ? "md:[&>div:first-child]:order-2" : ""}`}>
+        <div className="overflow-hidden rounded-[20px] bg-zinc-100 md:rounded-none md:first:rounded-l-[20px] md:last:rounded-r-[20px]">
           <img
-            src={item.imageBefore}
-            alt={`Dor: ${item.problem}`}
-            className="aspect-[4/3] h-full w-full object-cover"
+            src={index === 0 ? item.imageBefore : item.imageAfter}
+            alt={index === 0 ? `Dor: ${item.problem}` : `Resultado TurboClean para ${item.problem}`}
+            className="h-full min-h-[300px] w-full object-cover md:min-h-[380px]"
             loading="lazy"
             decoding="async"
           />
         </div>
-        <div className="flex flex-col justify-center py-2 md:py-5">
-          <span className="text-[10px] font-black uppercase tracking-[0.22em] text-red-600">
-            A dor
-          </span>
-          <h3 className="mt-3 max-w-xl text-2xl font-black leading-[1.05] tracking-[-0.04em] text-zinc-950 sm:text-3xl lg:text-4xl">
-            {item.problem}
-          </h3>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-600 sm:text-base">
-            {item.description}
-          </p>
-        </div>
-      </div>
-
-      <div className="my-8 h-px bg-zinc-200 sm:my-10" />
-
-      <div className="grid items-stretch gap-6 md:grid-cols-2 md:gap-10 lg:gap-14">
-        <div className="overflow-hidden rounded-[20px] bg-white">
-          <img
-            src={item.imageAfter}
-            alt={`Solução TurboClean para ${item.problem}`}
-            className="aspect-[4/3] h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div className="flex flex-col justify-center py-2 md:py-5">
-          <span className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-700">
-            A solução
-          </span>
-          <h3 className="mt-3 max-w-xl text-2xl font-black leading-[1.05] tracking-[-0.04em] text-zinc-950 sm:text-3xl lg:text-4xl">
-            Limpeza prática onde a sujeira mais incomoda.
-          </h3>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-600 sm:text-base">
-            {item.solution}
-          </p>
-          <div className="mt-5 flex items-center gap-2 text-xs font-bold text-emerald-700">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
-              <Check size={13} strokeWidth={3} />
-            </span>
-            Mais limpo, sem complicação e sem fio.
+        <div className={`flex items-center bg-white px-6 py-10 sm:px-10 lg:px-16 ${isReversed ? "md:order-1" : ""}`}>
+          <div className="max-w-xl">
+            <h3 className="text-2xl font-black leading-[1.05] tracking-[-0.04em] text-zinc-950 sm:text-3xl lg:text-4xl">
+              {index === 0 ? item.problem : "Limpeza prática onde a sujeira mais incomoda."}
+            </h3>
+            <p className="mt-4 text-sm leading-7 text-zinc-600 sm:text-base lg:text-lg">
+              {index === 0 ? item.description : item.solution}
+            </p>
+            {index > 0 && (
+              <div className="mt-5 flex items-center gap-2 text-xs font-bold text-emerald-700 sm:text-sm">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
+                  <Check size={13} strokeWidth={3} />
+                </span>
+                Mais limpo, sem complicação e sem fio.
+              </div>
+            )}
           </div>
         </div>
       </div>
+
+      {index < comparisons.length - 1 && (
+        <div className="mt-8 h-px bg-zinc-200 sm:mt-10" />
+      )}
     </article>
   );
 }
