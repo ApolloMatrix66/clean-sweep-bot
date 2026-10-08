@@ -209,72 +209,57 @@ function ComparisonCard({
   index: number;
 }) {
   return (
-    <article className="overflow-hidden rounded-[24px] border border-zinc-800 bg-[#121214] shadow-[0_20px_55px_rgba(0,0,0,0.28)]">
-      <div className="border-b border-zinc-800 p-5 sm:p-6">
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-[10px] font-black uppercase tracking-[0.22em] text-zinc-500">
-            0{index + 1} · Dor real
-          </span>
-          <span className="rounded-full bg-red-500/10 px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-red-400">
-            O problema
-          </span>
-        </div>
-        <h3 className="mt-4 text-xl font-black leading-tight tracking-tight text-white sm:text-2xl">
-          {item.problem}
-        </h3>
-        <p className="mt-3 text-sm leading-6 text-zinc-400">
-          {item.description}
-        </p>
-      </div>
-
-      <div className="p-4 sm:p-5">
-        <div className="relative overflow-hidden rounded-2xl">
+    <article className="border-t border-zinc-200 py-8 sm:py-10">
+      <div className="grid items-stretch gap-6 md:grid-cols-2 md:gap-10 lg:gap-14">
+        <div className="overflow-hidden rounded-[20px] bg-white">
           <img
             src={item.imageBefore}
             alt={`Dor: ${item.problem}`}
-            className="aspect-[16/10] h-full w-full object-cover"
+            className="aspect-[4/3] h-full w-full object-cover"
             loading="lazy"
             decoding="async"
           />
-          <span className="absolute left-3 top-3 rounded-full bg-red-600 px-3 py-1.5 text-[9px] font-black uppercase tracking-wide text-white shadow-lg">
-            Antes
-          </span>
         </div>
-
-        <div className="flex items-center gap-3 py-4">
-          <span className="h-px flex-1 bg-zinc-800" />
-          <span className="text-[9px] font-black uppercase tracking-[0.18em] text-zinc-500">
-            Agora a solução
+        <div className="flex flex-col justify-center py-2 md:py-5">
+          <span className="text-[10px] font-black uppercase tracking-[0.22em] text-red-600">
+            A dor
           </span>
-          <span className="h-px flex-1 bg-zinc-800" />
+          <h3 className="mt-3 max-w-xl text-2xl font-black leading-[1.05] tracking-[-0.04em] text-zinc-950 sm:text-3xl lg:text-4xl">
+            {item.problem}
+          </h3>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-600 sm:text-base">
+            {item.description}
+          </p>
         </div>
+      </div>
 
-        <div className="relative overflow-hidden rounded-2xl">
+      <div className="my-8 h-px bg-zinc-200 sm:my-10" />
+
+      <div className="grid items-stretch gap-6 md:grid-cols-2 md:gap-10 lg:gap-14">
+        <div className="overflow-hidden rounded-[20px] bg-white">
           <img
             src={item.imageAfter}
             alt={`Solução TurboClean para ${item.problem}`}
-            className="aspect-[16/10] h-full w-full object-cover"
+            className="aspect-[4/3] h-full w-full object-cover"
             loading="lazy"
             decoding="async"
           />
-          <span className="absolute left-3 top-3 rounded-full bg-emerald-500 px-3 py-1.5 text-[9px] font-black uppercase tracking-wide text-zinc-950 shadow-lg">
-            Depois
-          </span>
         </div>
-
-        <div className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4">
-          <div className="flex items-start gap-3">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-zinc-950">
-              <Check size={15} strokeWidth={3} />
-            </div>
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-400">
-                Com TurboClean
-              </p>
-              <p className="mt-1 text-sm font-semibold leading-5 text-white">
-                {item.solution}
-              </p>
-            </div>
+        <div className="flex flex-col justify-center py-2 md:py-5">
+          <span className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-700">
+            A solução
+          </span>
+          <h3 className="mt-3 max-w-xl text-2xl font-black leading-[1.05] tracking-[-0.04em] text-zinc-950 sm:text-3xl lg:text-4xl">
+            Limpeza prática onde a sujeira mais incomoda.
+          </h3>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-600 sm:text-base">
+            {item.solution}
+          </p>
+          <div className="mt-5 flex items-center gap-2 text-xs font-bold text-emerald-700">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
+              <Check size={13} strokeWidth={3} />
+            </span>
+            Mais limpo, sem complicação e sem fio.
           </div>
         </div>
       </div>
