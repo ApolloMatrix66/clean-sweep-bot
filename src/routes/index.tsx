@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   BatteryCharging,
@@ -283,13 +283,15 @@ function ComparisonCard({
 }
 
 function App() {
+  useEffect(() => { const id = "turboclean-manrope"; if (!document.getElementById(id)) { const link = document.createElement("link"); link.id=id; link.rel="stylesheet"; link.href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"; document.head.appendChild(link); } }, []);
+
   return (
-    <div className="min-h-screen bg-[#09090b] pb-20 text-white antialiased md:pb-0">
-      <div className="bg-zinc-950 px-4 py-2.5 text-center text-[9px] font-black uppercase tracking-[0.18em] text-white sm:text-[10px]">
+    <div style={{ fontFamily: '"Manrope", ui-sans-serif, system-ui, sans-serif' }} className="min-h-screen bg-white pb-20 text-zinc-950 antialiased md:pb-0">
+      <div className="bg-emerald-600 px-4 py-2.5 text-center text-[9px] font-black uppercase tracking-[0.18em] text-white sm:text-[10px]">
         OFERTA ESPECIAL <span className="mx-1.5 text-blue-400">•</span> FRETE GRÁTIS
       </div>
 
-      <header className="border-b border-zinc-800 bg-[#09090b]">
+      <header className="border-b border-zinc-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[72px] sm:px-6 lg:px-8">
           <button
             type="button"
@@ -297,7 +299,7 @@ function App() {
             className="flex items-center gap-2.5 text-left"
             aria-label="Voltar ao topo"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-zinc-950">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-950 text-white">
               <Zap size={16} fill="currentColor" />
             </span>
             <span>
@@ -325,22 +327,22 @@ function App() {
           <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1.08fr_.92fr] lg:gap-14">
             <ProductGallery />
 
-            <div className="rounded-[24px] border border-zinc-800 bg-[#121214] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)] sm:p-9 lg:p-10">
+            <div className="rounded-[24px] border border-zinc-200 bg-white p-6 shadow-[0_18px_60px_rgba(15,23,42,0.07)] sm:p-9 lg:p-10">
               <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.18em] text-blue-700">
                 <Sparkles size={12} />
                 Condição promocional
               </div>
 
-              <h1 className="mt-5 max-w-xl text-[38px] font-black leading-[0.96] tracking-[-0.055em] text-white sm:text-5xl lg:text-[56px]">
+              <h1 className="mt-5 max-w-xl text-[38px] font-black leading-[0.96] tracking-[-0.055em] text-zinc-950 sm:text-5xl lg:text-[60px]">
                 Limpeza potente. Onde a sujeira realmente está.
               </h1>
 
-              <p className="mt-5 max-w-lg text-sm leading-6 text-zinc-400 sm:text-base">
+              <p className="mt-5 max-w-lg text-sm leading-6 text-zinc-600 sm:text-base">
                 O aspirador compacto para carro, casa, sofá, colchão e cantos
                 difíceis — sem fio e pronto para usar.
               </p>
 
-              <div className="mt-6 grid gap-2 text-sm font-semibold text-zinc-200 sm:grid-cols-2">
+              <div className="mt-6 grid gap-2 text-sm font-semibold text-zinc-800 sm:grid-cols-2">
                 {[
                   "Alta sucção",
                   "Sem fio",
@@ -391,13 +393,13 @@ function App() {
           </div>
         </section>
 
-        <section className="border-y border-zinc-800 bg-[#0d0d0f] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+        <section className="border-y border-zinc-200 bg-[#f7f7f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-400">
                 O problema → A solução
               </p>
-              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl">
+              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">
                 Você também sofre com isso?
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-400 sm:text-base">
@@ -412,7 +414,7 @@ function App() {
           </div>
         </section>
 
-        <section className="border-y border-zinc-800 bg-[#121214] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+        <section className="border-y border-zinc-200 bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
               <div>
@@ -427,7 +429,7 @@ function App() {
                   espaço.
                 </p>
 
-                <div className="mt-8 rounded-2xl border border-zinc-800 bg-[#09090b] p-5">
+                <div className="mt-8 rounded-2xl border border-zinc-800 bg-[#f7f7f5] p-5">
                   <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wide">
                     <PackageCheck size={17} className="text-[#16A34A]" />
                     O que vem na caixa
@@ -454,7 +456,7 @@ function App() {
                 {specs.map(({ icon: Icon, title, text }) => (
                   <article
                     key={title}
-                    className="rounded-2xl border border-zinc-800 bg-[#09090b] p-6 sm:p-7"
+                    className="rounded-2xl border border-zinc-800 bg-white p-6 sm:p-7"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-950 text-white">
                       <Icon size={19} />
@@ -470,7 +472,7 @@ function App() {
           </div>
         </section>
 
-        <section className="border-b border-zinc-800 bg-[#09090b] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+        <section className="border-b border-zinc-200 bg-[#f7f7f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">
@@ -489,7 +491,7 @@ function App() {
               {[1, 2, 3].map((item) => (
                 <div
                   key={item}
-                  className="min-h-[190px] rounded-2xl border border-dashed border-zinc-700 bg-[#121214] p-6"
+                  className="min-h-[190px] rounded-2xl border border-dashed border-zinc-300 bg-white p-6"
                 >
                   <div className="flex items-center gap-1 text-zinc-300">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -506,6 +508,12 @@ function App() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+          <div className="mx-auto max-w-4xl"><div className="text-center"><p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-700">Dúvidas frequentes</p><h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">Tudo o que você precisa saber antes de comprar.</h2></div>
+            <div className="mt-10 divide-y divide-zinc-200 rounded-3xl border border-zinc-200 bg-white"><details key="Qual é o prazo de entrega?" className="group px-5 py-5 sm:px-7"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-sm font-extrabold text-zinc-950">Qual é o prazo de entrega?<span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-700 transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pt-3 pr-10 text-sm leading-6 text-zinc-600">O prazo e as opções disponíveis aparecem no checkout de acordo com o endereço informado.</p></details><details key="Posso pagar com Pix ou cartão?" className="group px-5 py-5 sm:px-7"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-sm font-extrabold text-zinc-950">Posso pagar com Pix ou cartão?<span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-700 transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pt-3 pr-10 text-sm leading-6 text-zinc-600">Sim. As opções de pagamento disponíveis são apresentadas de forma segura no checkout.</p></details><details key="O produto é sem fio?" className="group px-5 py-5 sm:px-7"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-sm font-extrabold text-zinc-950">O produto é sem fio?<span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-700 transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pt-3 pr-10 text-sm leading-6 text-zinc-600">Sim. O TurboClean foi pensado para uso portátil e possui recarga por USB-C.</p></details><details key="O que vem na caixa?" className="group px-5 py-5 sm:px-7"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-sm font-extrabold text-zinc-950">O que vem na caixa?<span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-700 transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pt-3 pr-10 text-sm leading-6 text-zinc-600">Você recebe o TurboClean Pro Max, acessórios para diferentes usos, cabo USB-C e a estrutura compacta do produto.</p></details><details key="A compra é segura?" className="group px-5 py-5 sm:px-7"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-sm font-extrabold text-zinc-950">A compra é segura?<span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-700 transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pt-3 pr-10 text-sm leading-6 text-zinc-600">O pagamento acontece em ambiente de checkout protegido, com os métodos disponíveis para sua compra.</p></details></div>
           </div>
         </section>
 
@@ -554,10 +562,10 @@ function App() {
         </section>
       </main>
 
-      <footer className="border-t border-zinc-800 bg-[#09090b] px-5 py-8">
+      <footer className="border-t border-zinc-200 bg-white px-5 py-8">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 sm:flex-row">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-zinc-950">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 text-white">
               <Zap size={14} fill="currentColor" />
             </span>
             <div>
