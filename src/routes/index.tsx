@@ -91,6 +91,23 @@ function SecurityBadges() {
   );
 }
 
+function RichFeature({ image, eyebrow, title, text, dark = false, reverse = false }: { image: string; eyebrow: string; title: string; text: string; dark?: boolean; reverse?: boolean }) {
+  return (
+    <article className={`grid overflow-hidden rounded-[28px] border ${dark ? "border-zinc-800 bg-zinc-950 text-white" : "border-zinc-200 bg-white text-zinc-950"} shadow-[0_18px_60px_rgba(15,23,42,0.07)] lg:grid-cols-2`}>
+      <div className={`min-h-[300px] ${reverse ? "lg:order-2" : ""} ${dark ? "bg-zinc-900" : "bg-[#f7f7f5]"} p-5 sm:min-h-[420px] sm:p-8 lg:min-h-[500px]`}>
+        <img src={image} alt="" className="h-full w-full rounded-2xl object-contain" loading="lazy" decoding="async" />
+      </div>
+      <div className={`flex items-center px-7 py-10 sm:px-12 sm:py-14 lg:px-16 ${reverse ? "lg:order-1" : ""}`}>
+        <div className="max-w-xl">
+          <p className={`text-[10px] font-black uppercase tracking-[0.25em] ${dark ? "text-emerald-300" : "text-emerald-700"}`}>{eyebrow}</p>
+          <h2 className={`mt-4 text-3xl font-black leading-[1.02] tracking-[-0.045em] sm:text-5xl ${dark ? "text-white" : "text-zinc-950"}`}>{title}</h2>
+          <p className={`mt-5 text-sm leading-7 sm:text-base ${dark ? "text-zinc-300" : "text-zinc-600"}`}>{text}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function App() {
   return (
     <div style={{ fontFamily: '"Manrope", ui-sans-serif, system-ui, sans-serif' }} className="min-h-screen bg-white pb-20 text-zinc-950 antialiased md:pb-0">
@@ -113,9 +130,7 @@ function App() {
               <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.18em] text-blue-700"><Sparkles size={12} />Condição promocional</div>
               <h1 className="mt-5 max-w-xl text-[38px] font-black leading-[0.96] tracking-[-0.055em] text-zinc-950 sm:text-5xl lg:text-[60px]">Limpeza potente. Onde a sujeira realmente está.</h1>
               <p className="mt-5 max-w-lg text-sm leading-6 text-zinc-600 sm:text-base">O aspirador compacto para carro, casa, sofá, colchão e cantos difíceis — sem fio e pronto para usar.</p>
-              <div className="mt-6 grid gap-2 text-sm font-semibold text-zinc-800 sm:grid-cols-2">
-                {["Alta sucção", "Sem fio", "Motor sem escovas", "Recarga USB-C"].map((item) => <div key={item} className="flex items-center gap-2.5"><span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-700"><Check size={12} strokeWidth={3} /></span>{item}</div>)}
-              </div>
+              <div className="mt-6 grid gap-2 text-sm font-semibold text-zinc-800 sm:grid-cols-2">{["Alta sucção", "Sem fio", "Motor sem escovas", "Recarga USB-C"].map((item) => <div key={item} className="flex items-center gap-2.5"><span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-700"><Check size={12} strokeWidth={3} /></span>{item}</div>)}</div>
               <div className="mt-7 border-t border-zinc-800 pt-6">
                 <span className="block text-xs font-bold text-red-600 line-through">R$ 179,90</span>
                 <div className="mt-1 flex items-end gap-3"><span className="text-[52px] font-black leading-none tracking-[-0.06em] sm:text-[62px]">R$ 89,90</span></div>
@@ -131,16 +146,67 @@ function App() {
         <section className="border-y border-zinc-200 bg-[#f7f7f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center overflow-hidden rounded-[28px] border border-zinc-200 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.07)] lg:grid-cols-2">
-              <div className="flex min-h-[380px] items-center justify-center bg-white p-6 sm:min-h-[500px] sm:p-10 lg:min-h-[540px]">
-                <img src="/L2.jpg" alt="Sujeira no tapete do carro" className="h-full max-h-[500px] w-full rounded-2xl object-contain" loading="lazy" decoding="async" />
-              </div>
-              <div className="flex items-center px-7 py-10 sm:px-12 lg:px-16 lg:py-14">
-                <div className="max-w-xl">
-                  <p className="text-[10px] font-black uppercase tracking-[0.25em] text-red-600">O problema</p>
-                  <h2 className="mt-4 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl lg:text-6xl">A sujeira se acumula onde é difícil limpar.</h2>
-                  <p className="mt-5 text-base leading-7 text-zinc-600 sm:text-lg">Areia, poeira e migalhas ficam no tapete e nos cantos do carro, deixando a limpeza mais difícil.</p>
-                  <button type="button" onClick={buy} className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#16A34A] px-6 py-4 text-sm font-black uppercase tracking-wide text-white shadow-[0_14px_30px_rgba(22,163,74,0.2)] transition hover:bg-[#15803D] sm:w-auto">RESOLVER ISSO <ArrowRight size={18} /></button>
+              <div className="flex min-h-[380px] items-center justify-center bg-white p-6 sm:min-h-[500px] sm:p-10 lg:min-h-[540px]"><img src="/L2.jpg" alt="Sujeira no tapete do carro" className="h-full max-h-[500px] w-full rounded-2xl object-contain" loading="lazy" decoding="async" /></div>
+              <div className="flex items-center px-7 py-10 sm:px-12 lg:px-16 lg:py-14"><div className="max-w-xl"><p className="text-[10px] font-black uppercase tracking-[0.25em] text-red-600">O problema</p><h2 className="mt-4 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl lg:text-6xl">A sujeira se acumula onde é difícil limpar.</h2><p className="mt-5 text-base leading-7 text-zinc-600 sm:text-lg">Areia, poeira e migalhas ficam no tapete e nos cantos do carro, deixando a limpeza mais difícil.</p><button type="button" onClick={buy} className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#16A34A] px-6 py-4 text-sm font-black uppercase tracking-wide text-white shadow-[0_14px_30px_rgba(22,163,74,0.2)] transition hover:bg-[#15803D] sm:w-auto">RESOLVER ISSO <ArrowRight size={18} /></button></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl"><p className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-500">Rich Product Description</p><h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-6xl">Detalhes que mostram o produto em uso.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-zinc-600 sm:text-base">Uma sequência visual para explicar a experiência do TurboClean sem excesso de informação e sem perder o foco na compra.</p></div>
+
+            <div className="mt-10 space-y-6 sm:mt-14 sm:space-y-8">
+              <RichFeature image="/L1.jpg" eyebrow="[LIMPEZA PRÁTICA]" title="Do resíduo acumulado para uma superfície mais limpa." text="A proposta é facilitar aquelas limpezas rápidas que normalmente ficam para depois: areia, poeira, migalhas e pequenos resíduos em superfícies do dia a dia." />
+              
+              <div className="grid gap-6 lg:grid-cols-2">
+                <div className="rounded-[28px] border border-zinc-200 bg-zinc-950 p-6 text-white sm:p-9">
+                  <div className="flex items-center justify-between gap-4"><div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10"><Wind size={20} /></div><span className="rounded-full border border-emerald-400/30 px-3 py-1 text-[9px] font-black uppercase tracking-[0.18em] text-emerald-300">High Suction</span></div>
+                  <h3 className="mt-8 text-2xl font-black tracking-tight sm:text-3xl">Sucção para a limpeza do dia a dia.</h3>
+                  <p className="mt-4 text-sm leading-6 text-zinc-300">Um formato compacto para alcançar áreas onde um aspirador grande nem sempre é prático.</p>
+                  <div className="mt-8 flex items-center gap-3 border-t border-white/10 pt-5 text-xs font-bold text-zinc-300"><Check size={15} className="text-emerald-400" />Uso portátil</div>
                 </div>
+                <div className="overflow-hidden rounded-[28px] border border-zinc-200 bg-[#f7f7f5]"><img src="/a1.jpg" alt="Detalhe do TurboClean Pro Max" className="h-full min-h-[300px] w-full object-contain p-6 sm:min-h-[390px] sm:p-10" loading="lazy" decoding="async" /></div>
+              </div>
+
+              <RichFeature image="/L3.jpg" eyebrow="[INTERIOR E ESTOFADOS]" title="Mais praticidade para sofá, colchão e outras superfícies." text="O tamanho compacto ajuda a levar o aspirador até áreas que precisam de uma limpeza localizada, sem montar uma operação inteira para isso." dark reverse />
+
+              <div className="grid gap-6 lg:grid-cols-2">
+                <div className="overflow-hidden rounded-[28px] border border-zinc-200 bg-white p-5 shadow-[0_12px_40px_rgba(15,23,42,0.05)] sm:p-8"><img src="/a4.jpg" alt="TurboClean Pro Max em detalhe" className="h-full min-h-[300px] w-full object-contain sm:min-h-[390px]" loading="lazy" decoding="async" /></div>
+                <div className="flex flex-col justify-center rounded-[28px] border border-zinc-200 bg-white p-7 sm:p-10">
+                  <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">[TECNOLOGIA E PORTABILIDADE]</p>
+                  <h3 className="mt-4 text-3xl font-black leading-tight tracking-[-0.04em] text-zinc-950 sm:text-4xl">Sem fio. Compacto. Pronto para usar.</h3>
+                  <p className="mt-4 text-sm leading-7 text-zinc-600">A recarga USB-C e o formato portátil tornam o TurboClean simples de guardar e transportar.</p>
+                  <div className="mt-7 grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl bg-[#f7f7f5] p-4"><BatteryCharging className="text-emerald-700" size={19} /><p className="mt-3 text-xs font-black uppercase tracking-wide text-zinc-900">USB-C</p><p className="mt-1 text-xs text-zinc-500">Recarga prática</p></div>
+                    <div className="rounded-2xl bg-[#f7f7f5] p-4"><PackageCheck className="text-emerald-700" size={19} /><p className="mt-3 text-xs font-black uppercase tracking-wide text-zinc-900">Compacto</p><p className="mt-1 text-xs text-zinc-500">Fácil de guardar</p></div>
+                  </div>
+                </div>
+              </div>
+
+              <RichFeature image="/L5.jpg" eyebrow="[USO VERSÁTIL]" title="Pequeno no tamanho. Útil em diferentes cantos." text="A ideia é ter uma ferramenta rápida à mão para a limpeza localizada, especialmente em estofados, bancos, tapetes e áreas menores." />
+
+              <div className="grid gap-6 lg:grid-cols-[1.2fr_.8fr]">
+                <div className="overflow-hidden rounded-[28px] border border-zinc-800 bg-zinc-950"><img src="/L6.jpg" alt="Resultado de limpeza em estofado" className="h-full min-h-[300px] w-full object-contain p-5 sm:min-h-[420px] sm:p-8" loading="lazy" decoding="async" /></div>
+                <div className="flex flex-col justify-center rounded-[28px] border border-zinc-200 bg-white p-7 sm:p-10">
+                  <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-700">[DETALHES DO PRODUTO]</p>
+                  <h3 className="mt-4 text-3xl font-black leading-tight tracking-[-0.04em] text-zinc-950">Pensado para entrar na sua rotina.</h3>
+                  <p className="mt-4 text-sm leading-7 text-zinc-600">Do carro à casa, o formato portátil facilita pequenas sessões de limpeza sem ocupar muito espaço.</p>
+                  <div className="mt-6 space-y-3">{["Motor sem escovas", "Uso sem fio", "Recarga USB-C", "Acessórios inclusos"].map((item) => <div key={item} className="flex items-center gap-2.5 text-sm font-bold text-zinc-800"><span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"><Check size={13} strokeWidth={3} /></span>{item}</div>)}</div>
+                </div>
+              </div>
+
+              <div className="rounded-[28px] border border-zinc-800 bg-zinc-950 px-6 py-10 text-white sm:px-10 sm:py-12">
+                <div className="grid gap-8 md:grid-cols-3">
+                  <div className="border-b border-white/10 pb-7 md:border-b-0 md:border-r md:pb-0 md:pr-8"><ShieldCheck className="text-emerald-400" size={22} /><p className="mt-4 text-sm font-black">Compra segura</p><p className="mt-2 text-xs leading-5 text-zinc-400">Pagamento realizado em checkout protegido.</p></div>
+                  <div className="border-b border-white/10 pb-7 md:border-b-0 md:border-r md:pb-0 md:pr-8"><Truck className="text-emerald-400" size={22} /><p className="mt-4 text-sm font-black">Frete grátis</p><p className="mt-2 text-xs leading-5 text-zinc-400">Condição promocional exibida na oferta.</p></div>
+                  <div><Sparkles className="text-emerald-400" size={22} /><p className="mt-4 text-sm font-black">Design funcional</p><p className="mt-2 text-xs leading-5 text-zinc-400">Formato compacto para uso e armazenamento.</p></div>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center justify-between gap-5 rounded-[28px] bg-[#f7f7f5] px-6 py-8 sm:flex-row sm:px-10">
+                <div><p className="text-xs font-black uppercase tracking-[0.2em] text-zinc-500">Pronto para simplificar a limpeza?</p><p className="mt-1 text-xl font-black tracking-tight text-zinc-950">Garanta o TurboClean Pro Max por R$ 89,90.</p></div>
+                <button type="button" onClick={buy} className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#16A34A] px-6 py-4 text-sm font-black uppercase tracking-wide text-white shadow-[0_14px_30px_rgba(22,163,74,0.2)] transition hover:bg-[#15803D] sm:w-auto">COMPRAR AGORA <ArrowRight size={18} /></button>
               </div>
             </div>
           </div>
@@ -153,10 +219,7 @@ function App() {
                 <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">Especificações</p>
                 <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">Feito para facilitar.</h2>
                 <p className="mt-5 max-w-md text-sm leading-6 text-zinc-600 sm:text-base">Compacto, sem fio e pensado para entrar na rotina sem ocupar espaço.</p>
-                <div className="mt-8 rounded-2xl border border-zinc-200 bg-[#f7f7f5] p-5">
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wide"><PackageCheck size={17} className="text-[#16A34A]" />O que vem na caixa</div>
-                  <ul className="mt-4 space-y-3">{includedItems.map((item) => <li key={item} className="flex items-start gap-2.5 text-sm font-semibold text-zinc-700"><Check size={16} className="mt-0.5 shrink-0 text-[#16A34A]" strokeWidth={3} />{item}</li>)}</ul>
-                </div>
+                <div className="mt-8 rounded-2xl border border-zinc-200 bg-[#f7f7f5] p-5"><div className="flex items-center gap-2 text-xs font-black uppercase tracking-wide"><PackageCheck size={17} className="text-[#16A34A]" />O que vem na caixa</div><ul className="mt-4 space-y-3">{includedItems.map((item) => <li key={item} className="flex items-start gap-2.5 text-sm font-semibold text-zinc-700"><Check size={16} className="mt-0.5 shrink-0 text-[#16A34A]" strokeWidth={3} />{item}</li>)}</ul></div>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">{specs.map(({ icon: Icon, title, text }) => <article key={title} className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-[0_10px_35px_rgba(15,23,42,0.05)] sm:p-7"><div className="flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-950 text-white"><Icon size={19} /></div><h3 className="mt-5 text-base font-black text-zinc-950">{title}</h3><p className="mt-2 text-sm leading-6 text-zinc-600">{text}</p></article>)}</div>
             </div>
@@ -174,13 +237,7 @@ function App() {
           <div className="mx-auto max-w-4xl">
             <div className="text-center"><p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-700">Dúvidas frequentes</p><h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">Tudo o que você precisa saber antes de comprar.</h2></div>
             <div className="mt-10 divide-y divide-zinc-200 rounded-3xl border border-zinc-200 bg-white">
-              {[
-                ["Qual é o prazo de entrega?", "O prazo e as opções disponíveis aparecem no checkout de acordo com o endereço informado."],
-                ["Posso pagar com Pix ou cartão?", "Sim. As opções de pagamento disponíveis são apresentadas de forma segura no checkout."],
-                ["O produto é sem fio?", "Sim. O TurboClean foi pensado para uso portátil e possui recarga por USB-C."],
-                ["O que vem na caixa?", "Você recebe o TurboClean Pro Max, acessórios para diferentes usos, cabo USB-C e a estrutura compacta do produto."],
-                ["A compra é segura?", "O pagamento acontece em ambiente de checkout protegido, com os métodos disponíveis para sua compra."],
-              ].map(([question, answer]) => <details key={question} className="group px-5 py-5 sm:px-7"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-sm font-extrabold text-zinc-950">{question}<span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-700 transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pt-3 pr-10 text-sm leading-6 text-zinc-600">{answer}</p></details>)}
+              {[["Qual é o prazo de entrega?","O prazo e as opções disponíveis aparecem no checkout de acordo com o endereço informado."],["Posso pagar com Pix ou cartão?","Sim. As opções de pagamento disponíveis são apresentadas de forma segura no checkout."],["O produto é sem fio?","Sim. O TurboClean foi pensado para uso portátil e possui recarga por USB-C."],["O que vem na caixa?","Você recebe o TurboClean Pro Max, acessórios para diferentes usos, cabo USB-C e a estrutura compacta do produto."],["A compra é segura?","O pagamento acontece em ambiente de checkout protegido, com os métodos disponíveis para sua compra."]].map(([question, answer]) => <details key={question} className="group px-5 py-5 sm:px-7"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-sm font-extrabold text-zinc-950">{question}<span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-700 transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pt-3 pr-10 text-sm leading-6 text-zinc-600">{answer}</p></details>)}
             </div>
           </div>
         </section>
