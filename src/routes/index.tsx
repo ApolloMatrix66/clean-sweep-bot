@@ -31,36 +31,6 @@ const gallery = [
   "/a9.jpg",
 ];
 
-const comparisons = [
-  {
-    imageBefore: "/L2.jpg",
-    imageAfter: "/L1.jpg",
-    problem: "Cansado do carpete do carro cheio de areia?",
-    description:
-      "Areia, migalhas e resíduos ficam grudados nas frestas e nos cantos mais difíceis.",
-    solution:
-      "TurboClean ajuda a remover a sujeira acumulada e devolver uma aparência muito mais limpa ao interior do carro.",
-  },
-  {
-    imageBefore: "/L3.jpg",
-    imageAfter: "/L4.jpg",
-    problem: "Poeira acumulada no colchão?",
-    description:
-      "A poeira pode ficar escondida entre as fibras, justamente onde uma limpeza superficial não alcança.",
-    solution:
-      "Com o TurboClean, você consegue fazer uma limpeza prática diretamente sobre a superfície do colchão.",
-  },
-  {
-    imageBefore: "/L5.jpg",
-    imageAfter: "/L6.jpg",
-    problem: "Seu estofado parece encardido?",
-    description:
-      "Farelos, poeira e pequenos resíduos se acumulam nos cantos e áreas difíceis de limpar.",
-    solution:
-      "TurboClean facilita a remoção da sujeira do dia a dia em sofás, cadeiras e outros estofados.",
-  },
-];
-
 const specs = [
   {
     icon: Zap,
@@ -201,54 +171,6 @@ function SecurityBadges() {
   );
 }
 
-function ComparisonCard({
-  item,
-  index,
-}: {
-  item: (typeof comparisons)[number];
-  index: number;
-}) {
-  const isReversed = index % 2 === 1;
-
-  return (
-    <article className="border-t border-zinc-200 first:border-t-0 py-8 sm:py-10 lg:py-12">
-      <div className={`grid min-h-[360px] items-stretch md:grid-cols-2 ${isReversed ? "md:[&>div:first-child]:order-2" : ""}`}>
-        <div className="overflow-hidden rounded-[20px] bg-zinc-100 md:rounded-none md:first:rounded-l-[20px] md:last:rounded-r-[20px]">
-          <img
-            src={index === 0 ? item.imageBefore : item.imageAfter}
-            alt={index === 0 ? `Dor: ${item.problem}` : `Resultado TurboClean para ${item.problem}`}
-            className="h-full min-h-[300px] w-full object-cover md:min-h-[380px]"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div className={`flex items-center bg-white px-6 py-10 sm:px-10 lg:px-16 ${isReversed ? "md:order-1" : ""}`}>
-          <div className="max-w-xl">
-            <h3 className="text-2xl font-black leading-[1.05] tracking-[-0.04em] text-zinc-950 sm:text-3xl lg:text-4xl">
-              {index === 0 ? item.problem : "Limpeza prática onde a sujeira mais incomoda."}
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-zinc-600 sm:text-base lg:text-lg">
-              {index === 0 ? item.description : item.solution}
-            </p>
-            {index > 0 && (
-              <div className="mt-5 flex items-center gap-2 text-xs font-bold text-emerald-700 sm:text-sm">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
-                  <Check size={13} strokeWidth={3} />
-                </span>
-                Mais limpo, sem complicação e sem fio.
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {index < comparisons.length - 1 && (
-        <div className="mt-8 h-px bg-zinc-200 sm:mt-10" />
-      )}
-    </article>
-  );
-}
-
 function App() {
   return (
     <div style={{ fontFamily: '"Manrope", ui-sans-serif, system-ui, sans-serif' }} className="min-h-screen bg-white pb-20 text-zinc-950 antialiased md:pb-0">
@@ -360,21 +282,54 @@ function App() {
 
         <section className="border-y border-zinc-200 bg-[#f7f7f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-700">
-                O problema → A solução
-              </p>
-              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">
-                Veja a Diferença Real na Prática
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base">
-                Primeiro você reconhece o problema. Logo abaixo, veja como o TurboClean facilita a solução.
-              </p>
-            </div>
-            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-              {comparisons.map((item, index) => (
-                <ComparisonCard key={item.problem} item={item} index={index} />
-              ))}
+            <div className="grid items-center overflow-hidden rounded-[28px] border border-zinc-200 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.07)] lg:grid-cols-2">
+              <div className="flex min-h-[380px] items-center justify-center bg-white p-8 sm:min-h-[500px] sm:p-12 lg:min-h-[580px]">
+                <img
+                  src="/a0.png"
+                  alt="TurboClean Pro Max"
+                  className="h-full max-h-[540px] w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div className="flex items-center px-7 py-12 sm:px-12 lg:px-16 lg:py-16">
+                <div className="max-w-xl">
+                  <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-700">
+                    A solução
+                  </p>
+                  <h2 className="mt-4 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl lg:text-6xl">
+                    Um aspirador compacto para limpar onde você precisar.
+                  </h2>
+                  <p className="mt-6 text-base leading-7 text-zinc-600 sm:text-lg">
+                    O TurboClean Pro Max foi pensado para tornar a limpeza do dia a dia mais prática. Sem fio, compacto e fácil de transportar, ele ajuda a remover areia, migalhas, poeira e pequenos resíduos do carro, sofá, colchão e outros cantos difíceis.
+                  </p>
+
+                  <div className="mt-7 space-y-3">
+                    {[
+                      "Alta sucção para a sujeira do dia a dia",
+                      "Uso sem fio com recarga USB-C",
+                      "Formato compacto para levar para qualquer lugar",
+                    ].map((item) => (
+                      <div key={item} className="flex items-start gap-3 text-sm font-bold text-zinc-800 sm:text-base">
+                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                          <Check size={13} strokeWidth={3} />
+                        </span>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={buy}
+                    className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#16A34A] px-6 py-4 text-sm font-black uppercase tracking-wide text-white shadow-[0_14px_30px_rgba(22,163,74,0.2)] transition hover:bg-[#15803D] sm:w-auto"
+                  >
+                    VER COMO FUNCIONA
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
