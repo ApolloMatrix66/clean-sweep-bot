@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Sparkles,
   Truck,
+  Wind,
   Zap,
 } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
