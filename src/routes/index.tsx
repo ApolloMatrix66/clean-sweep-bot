@@ -202,8 +202,8 @@ function ComparisonCard({
 }) {
   return (
     <article className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-[0_10px_35px_rgba(0,0,0,0.05)]">
-      <div className="grid grid-cols-2">
-        <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
+      <div className="grid grid-cols-1">
+        <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
           <img
             src={item.imageBefore}
             alt={`Antes: ${item.problem}`}
@@ -216,7 +216,7 @@ function ComparisonCard({
           </span>
         </div>
 
-        <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
+        <div className="relative aspect-[16/10] overflow-hidden border-t border-zinc-100 bg-zinc-100">
           <img
             src={item.imageAfter}
             alt={`Depois: solução para ${item.problem}`}
@@ -366,7 +366,7 @@ function App() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
               {comparisons.map((item) => (
                 <ComparisonCard key={item.problem} item={item} />
               ))}
