@@ -7,13 +7,11 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleHelp,
-  CreditCard,
   Lock,
   PackageCheck,
   ShieldCheck,
   Sparkles,
   Truck,
-  Usb,
   Wind,
   Zap,
 } from "lucide-react";
