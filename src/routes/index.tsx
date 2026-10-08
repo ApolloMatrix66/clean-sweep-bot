@@ -35,23 +35,29 @@ const comparisons = [
   {
     imageBefore: "/L2.jpg",
     imageAfter: "/L1.jpg",
-    problem: "Areia e migalhas no carro",
+    problem: "Cansado do carpete do carro cheio de areia?",
     description:
-      "Sujeira acumulada no carpete, bancos e frestas difíceis de alcançar.",
+      "Areia, migalhas e resíduos ficam grudados nas frestas e nos cantos mais difíceis.",
+    solution:
+      "TurboClean ajuda a remover a sujeira acumulada e devolver uma aparência muito mais limpa ao interior do carro.",
   },
   {
     imageBefore: "/L3.jpg",
     imageAfter: "/L4.jpg",
-    problem: "Poeira acumulada no colchão",
+    problem: "Poeira acumulada no colchão?",
     description:
-      "Uma limpeza superficial nem sempre alcança partículas escondidas nos tecidos.",
+      "A poeira pode ficar escondida entre as fibras, justamente onde uma limpeza superficial não alcança.",
+    solution:
+      "Com o TurboClean, você consegue fazer uma limpeza prática diretamente sobre a superfície do colchão.",
   },
   {
     imageBefore: "/L5.jpg",
     imageAfter: "/L6.jpg",
-    problem: "Estofado com aspecto encardido",
+    problem: "Seu estofado parece encardido?",
     description:
-      "Farelos e poeira ficam presos justamente nas áreas mais difíceis de limpar.",
+      "Farelos, poeira e pequenos resíduos se acumulam nos cantos e áreas difíceis de limpar.",
+    solution:
+      "TurboClean facilita a remoção da sujeira do dia a dia em sofás, cadeiras e outros estofados.",
   },
 ];
 
@@ -107,7 +113,7 @@ function ProductGallery() {
 
   return (
     <div className="min-w-0">
-      <div className="relative overflow-hidden rounded-[24px] border border-zinc-200 bg-white shadow-[0_18px_60px_rgba(0,0,0,0.08)] sm:rounded-[28px]">
+      <div className="relative overflow-hidden rounded-[24px] border border-zinc-800 bg-white shadow-[0_18px_60px_rgba(0,0,0,0.35)] sm:rounded-[28px]">
         <div className="flex aspect-square items-center justify-center bg-white sm:aspect-[1.08/1]">
           <img
             src={gallery[active]}
@@ -197,46 +203,80 @@ function SecurityBadges() {
 
 function ComparisonCard({
   item,
+  index,
 }: {
   item: (typeof comparisons)[number];
+  index: number;
 }) {
   return (
-    <article className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-[0_10px_35px_rgba(0,0,0,0.05)]">
-      <div className="grid grid-cols-1">
-        <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
-          <img
-            src={item.imageBefore}
-            alt={`Antes: ${item.problem}`}
-            className="h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-          <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-zinc-700 shadow-sm">
-            Antes · Problema
+    <article className="overflow-hidden rounded-[24px] border border-zinc-800 bg-[#121214] shadow-[0_20px_55px_rgba(0,0,0,0.28)]">
+      <div className="border-b border-zinc-800 p-5 sm:p-6">
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-[10px] font-black uppercase tracking-[0.22em] text-zinc-500">
+            0{index + 1} · Dor real
+          </span>
+          <span className="rounded-full bg-red-500/10 px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-red-400">
+            O problema
           </span>
         </div>
-
-        <div className="relative aspect-[16/10] overflow-hidden border-t border-zinc-100 bg-zinc-100">
-          <img
-            src={item.imageAfter}
-            alt={`Depois: solução para ${item.problem}`}
-            className="h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-          <span className="absolute left-3 top-3 rounded-full bg-zinc-950/90 px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-white shadow-sm">
-            Depois · TurboClean
-          </span>
-        </div>
-      </div>
-
-      <div className="p-5 sm:p-6">
-        <h3 className="text-lg font-black tracking-tight text-zinc-950">
+        <h3 className="mt-4 text-xl font-black leading-tight tracking-tight text-white sm:text-2xl">
           {item.problem}
         </h3>
-        <p className="mt-2 text-sm leading-6 text-zinc-600">
+        <p className="mt-3 text-sm leading-6 text-zinc-400">
           {item.description}
         </p>
+      </div>
+
+      <div className="p-4 sm:p-5">
+        <div className="relative overflow-hidden rounded-2xl">
+          <img
+            src={item.imageBefore}
+            alt={`Dor: ${item.problem}`}
+            className="aspect-[16/10] h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <span className="absolute left-3 top-3 rounded-full bg-red-600 px-3 py-1.5 text-[9px] font-black uppercase tracking-wide text-white shadow-lg">
+            Antes
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3 py-4">
+          <span className="h-px flex-1 bg-zinc-800" />
+          <span className="text-[9px] font-black uppercase tracking-[0.18em] text-zinc-500">
+            Agora a solução
+          </span>
+          <span className="h-px flex-1 bg-zinc-800" />
+        </div>
+
+        <div className="relative overflow-hidden rounded-2xl">
+          <img
+            src={item.imageAfter}
+            alt={`Solução TurboClean para ${item.problem}`}
+            className="aspect-[16/10] h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <span className="absolute left-3 top-3 rounded-full bg-emerald-500 px-3 py-1.5 text-[9px] font-black uppercase tracking-wide text-zinc-950 shadow-lg">
+            Depois
+          </span>
+        </div>
+
+        <div className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4">
+          <div className="flex items-start gap-3">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-zinc-950">
+              <Check size={15} strokeWidth={3} />
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-400">
+                Com TurboClean
+              </p>
+              <p className="mt-1 text-sm font-semibold leading-5 text-white">
+                {item.solution}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   );
@@ -244,12 +284,12 @@ function ComparisonCard({
 
 function App() {
   return (
-    <div className="min-h-screen bg-white pb-20 text-zinc-950 antialiased md:pb-0">
+    <div className="min-h-screen bg-[#09090b] pb-20 text-white antialiased md:pb-0">
       <div className="bg-zinc-950 px-4 py-2.5 text-center text-[9px] font-black uppercase tracking-[0.18em] text-white sm:text-[10px]">
         OFERTA ESPECIAL <span className="mx-1.5 text-blue-400">•</span> FRETE GRÁTIS
       </div>
 
-      <header className="border-b border-zinc-200 bg-white">
+      <header className="border-b border-zinc-800 bg-[#09090b]">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[72px] sm:px-6 lg:px-8">
           <button
             type="button"
@@ -257,11 +297,11 @@ function App() {
             className="flex items-center gap-2.5 text-left"
             aria-label="Voltar ao topo"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-950 text-white">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-zinc-950">
               <Zap size={16} fill="currentColor" />
             </span>
             <span>
-              <span className="block text-sm font-black tracking-tight">
+              <span className="block text-sm font-black tracking-tight text-white">
                 TurboClean
               </span>
               <span className="block text-[8px] font-bold uppercase tracking-[0.24em] text-zinc-400">
@@ -281,26 +321,26 @@ function App() {
       </header>
 
       <main>
-        <section className="bg-zinc-50 px-4 py-5 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
+        <section className="bg-[#09090b] px-4 py-5 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
           <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1.08fr_.92fr] lg:gap-14">
             <ProductGallery />
 
-            <div className="rounded-[24px] bg-white p-6 shadow-[0_18px_60px_rgba(0,0,0,0.06)] sm:p-9 lg:p-10">
+            <div className="rounded-[24px] border border-zinc-800 bg-[#121214] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)] sm:p-9 lg:p-10">
               <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.18em] text-blue-700">
                 <Sparkles size={12} />
                 Condição promocional
               </div>
 
-              <h1 className="mt-5 max-w-xl text-[38px] font-black leading-[0.96] tracking-[-0.055em] sm:text-5xl lg:text-[56px]">
+              <h1 className="mt-5 max-w-xl text-[38px] font-black leading-[0.96] tracking-[-0.055em] text-white sm:text-5xl lg:text-[56px]">
                 Limpeza potente. Onde a sujeira realmente está.
               </h1>
 
-              <p className="mt-5 max-w-lg text-sm leading-6 text-zinc-600 sm:text-base">
+              <p className="mt-5 max-w-lg text-sm leading-6 text-zinc-400 sm:text-base">
                 O aspirador compacto para carro, casa, sofá, colchão e cantos
                 difíceis — sem fio e pronto para usar.
               </p>
 
-              <div className="mt-6 grid gap-2 text-sm font-semibold text-zinc-900 sm:grid-cols-2">
+              <div className="mt-6 grid gap-2 text-sm font-semibold text-zinc-200 sm:grid-cols-2">
                 {[
                   "Alta sucção",
                   "Sem fio",
@@ -308,7 +348,7 @@ function App() {
                   "Recarga USB-C",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-50 text-[#16A34A]">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
                       <Check size={12} strokeWidth={3} />
                     </span>
                     {item}
@@ -316,7 +356,7 @@ function App() {
                 ))}
               </div>
 
-              <div className="mt-7 border-t border-zinc-200 pt-6">
+              <div className="mt-7 border-t border-zinc-800 pt-6">
                 <span className="block text-xs font-bold text-red-600 line-through">
                   R$ 179,90
                 </span>
@@ -346,105 +386,40 @@ function App() {
             </div>
           </div>
 
-          <div className="mx-auto mt-5 max-w-7xl">
+          <div className="mx-auto mt-5 max-w-7xl overflow-hidden rounded-2xl bg-white">
             <SecurityBadges />
           </div>
         </section>
 
-        <section className="border-y border-zinc-200 bg-zinc-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+        <section className="border-y border-zinc-800 bg-[#0d0d0f] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">
+              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-400">
                 O problema → A solução
               </p>
-              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] sm:text-5xl">
+              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl">
                 Você também sofre com isso?
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base">
-                Algumas sujeiras parecem pequenas, mas ficam justamente nos
-                lugares mais difíceis de alcançar.
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-400 sm:text-base">
+                Primeiro você reconhece o problema. Logo abaixo, veja como o TurboClean facilita a solução.
               </p>
             </div>
-
-            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
               {comparisons.map((item, index) => (
-                <article
-                  key={item.problem}
-                  className="overflow-hidden rounded-[24px] border border-zinc-200 bg-white shadow-[0_12px_40px_rgba(0,0,0,0.05)]"
-                >
-                  <div className="border-b border-zinc-100 px-5 pb-4 pt-5 sm:px-6 sm:pt-6">
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">
-                        Problema {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className="rounded-full bg-red-50 px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-red-600">
-                        A dor
-                      </span>
-                    </div>
-                    <h3 className="mt-3 text-xl font-black tracking-tight text-zinc-950 sm:text-2xl">
-                      {item.problem}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-zinc-600">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="p-4 sm:p-5">
-                    <div className="relative overflow-hidden rounded-2xl bg-zinc-100">
-                      <img
-                        src={item.imageBefore}
-                        alt={`Problema: ${item.problem}`}
-                        className="aspect-[16/10] h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1.5 text-[9px] font-black uppercase tracking-wide text-red-600 shadow-sm">
-                        Antes
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-center py-3">
-                      <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.16em] text-zinc-400">
-                        <span className="h-px w-8 bg-zinc-200 sm:w-12" />
-                        Depois
-                        <span className="h-px w-8 bg-zinc-200 sm:w-12" />
-                      </div>
-                    </div>
-
-                    <div className="relative overflow-hidden rounded-2xl bg-zinc-100">
-                      <img
-                        src={item.imageAfter}
-                        alt={`Solução TurboClean para ${item.problem}`}
-                        className="aspect-[16/10] h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <span className="absolute left-3 top-3 rounded-full bg-zinc-950/90 px-2.5 py-1.5 text-[9px] font-black uppercase tracking-wide text-white shadow-sm">
-                        Solução · TurboClean
-                      </span>
-                    </div>
-
-                    <div className="mt-4 flex items-center gap-2 rounded-xl bg-green-50 px-4 py-3">
-                      <Check className="h-4 w-4 shrink-0 text-[#16A34A]" strokeWidth={3} />
-                      <p className="text-xs font-bold leading-5 text-zinc-800">
-                        Mais praticidade para remover a sujeira onde ela costuma se esconder.
-                      </p>
-                    </div>
-                  </div>
-                </article>
+                <ComparisonCard key={item.problem} item={item} index={index} />
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-y border-zinc-200 bg-zinc-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+        <section className="border-y border-zinc-800 bg-[#121214] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">
                   Especificações
                 </p>
-                <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] sm:text-5xl">
+                <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl">
                   Feito para facilitar.
                 </h2>
                 <p className="mt-5 max-w-md text-sm leading-6 text-zinc-600 sm:text-base">
@@ -452,7 +427,7 @@ function App() {
                   espaço.
                 </p>
 
-                <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-5">
+                <div className="mt-8 rounded-2xl border border-zinc-800 bg-[#09090b] p-5">
                   <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wide">
                     <PackageCheck size={17} className="text-[#16A34A]" />
                     O que vem na caixa
@@ -461,7 +436,7 @@ function App() {
                     {includedItems.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-2.5 text-sm font-semibold text-zinc-800"
+                        className="flex items-start gap-2.5 text-sm font-semibold text-zinc-200"
                       >
                         <Check
                           size={16}
@@ -479,12 +454,12 @@ function App() {
                 {specs.map(({ icon: Icon, title, text }) => (
                   <article
                     key={title}
-                    className="rounded-2xl border border-zinc-200 bg-white p-6 sm:p-7"
+                    className="rounded-2xl border border-zinc-800 bg-[#09090b] p-6 sm:p-7"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-950 text-white">
                       <Icon size={19} />
                     </div>
-                    <h3 className="mt-5 text-base font-black">{title}</h3>
+                    <h3 className="mt-5 text-base font-black text-white">{title}</h3>
                     <p className="mt-2 text-sm leading-6 text-zinc-600">
                       {text}
                     </p>
@@ -495,13 +470,13 @@ function App() {
           </div>
         </section>
 
-        <section className="px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+        <section className="border-b border-zinc-800 bg-[#09090b] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">
                 Provas sociais
               </p>
-              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] sm:text-5xl">
+              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl">
                 Experiências reais de clientes.
               </h2>
               <p className="mt-4 text-sm leading-6 text-zinc-600">
@@ -514,7 +489,7 @@ function App() {
               {[1, 2, 3].map((item) => (
                 <div
                   key={item}
-                  className="min-h-[190px] rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-6"
+                  className="min-h-[190px] rounded-2xl border border-dashed border-zinc-700 bg-[#121214] p-6"
                 >
                   <div className="flex items-center gap-1 text-zinc-300">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -579,14 +554,14 @@ function App() {
         </section>
       </main>
 
-      <footer className="border-t border-zinc-200 bg-white px-5 py-8">
+      <footer className="border-t border-zinc-800 bg-[#09090b] px-5 py-8">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 sm:flex-row">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 text-white">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-zinc-950">
               <Zap size={14} fill="currentColor" />
             </span>
             <div>
-              <p className="text-sm font-black">TurboClean Pro Max</p>
+              <p className="text-sm font-black text-white">TurboClean Pro Max</p>
               <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">
                 Compra segura
               </p>
@@ -604,7 +579,7 @@ function App() {
         </div>
       </footer>
 
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-200 bg-white/95 p-2.5 shadow-[0_-8px_30px_rgba(0,0,0,0.12)] backdrop-blur md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-800 bg-[#09090b]/95 p-2.5 shadow-[0_-8px_30px_rgba(0,0,0,0.12)] backdrop-blur md:hidden">
         <button
           type="button"
           onClick={buy}
