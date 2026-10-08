@@ -361,13 +361,13 @@ function App() {
         <section className="border-y border-zinc-200 bg-[#f7f7f5] px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-400">
+              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-700">
                 O problema → A solução
               </p>
               <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">
                 Veja a Diferença Real na Prática
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-400 sm:text-base">
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base">
                 Primeiro você reconhece o problema. Logo abaixo, veja como o TurboClean facilita a solução.
               </p>
             </div>
@@ -421,12 +421,12 @@ function App() {
                 {specs.map(({ icon: Icon, title, text }) => (
                   <article
                     key={title}
-                    className="rounded-2xl border border-zinc-800 bg-white p-6 sm:p-7"
+                    className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-[0_10px_35px_rgba(15,23,42,0.05)] sm:p-7"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-950 text-white">
                       <Icon size={19} />
                     </div>
-                    <h3 className="mt-5 text-base font-black text-white">{title}</h3>
+                    <h3 className="mt-5 text-base font-black text-zinc-950">{title}</h3>
                     <p className="mt-2 text-sm leading-6 text-zinc-600">
                       {text}
                     </p>
@@ -443,7 +443,7 @@ function App() {
               <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">
                 Provas sociais
               </p>
-              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl">
+              <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">
                 Experiências reais de clientes.
               </h2>
               <p className="mt-4 text-sm leading-6 text-zinc-600">
