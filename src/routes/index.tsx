@@ -185,22 +185,16 @@ function ProductImage({
 function ImageStory({
   src,
   alt,
-  eyebrow,
-  label,
-  labelClass,
   priority = false,
   objectPosition = "center",
 }: {
   src: string;
   alt: string;
-  eyebrow: string;
-  label: string;
-  labelClass: string;
   priority?: boolean;
   objectPosition?: string;
 }) {
   return (
-    <div className="relative h-[55vh] min-h-[360px] w-full overflow-hidden bg-zinc-100 sm:h-[65vh] sm:min-h-[500px] lg:h-[74vh] lg:min-h-[620px]">
+    <div className="relative h-[54vh] min-h-[340px] w-full overflow-hidden bg-zinc-100 sm:h-[62vh] sm:min-h-[500px] lg:h-[72vh] lg:min-h-[620px]">
       <img
         src={src}
         alt={alt}
@@ -209,19 +203,6 @@ function ImageStory({
         className="h-full w-full object-cover"
         style={{ objectPosition }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/5" />
-      <div className="absolute left-5 top-5 sm:left-8 sm:top-8">
-        <span className="rounded-full bg-white/95 px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-900 shadow-sm">
-          {eyebrow}
-        </span>
-      </div>
-      <div className="absolute bottom-5 right-5 sm:bottom-8 sm:right-8">
-        <span
-          className={`rounded-full px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.2em] shadow-lg ${labelClass}`}
-        >
-          {label}
-        </span>
-      </div>
     </div>
   );
 }
@@ -410,28 +391,25 @@ function App() {
             <ImageStory
               src={section.painImage}
               alt={`${section.eyebrow} — situação antes da limpeza`}
-              eyebrow={section.eyebrow}
-              label="Dor"
-              labelClass="bg-zinc-950 text-white"
               priority={index === 0}
+              objectPosition="center"
             />
 
-            <div className="bg-white px-5 py-10 sm:px-8 sm:py-14 lg:px-8 lg:py-16">
-              <div className="mx-auto max-w-5xl">
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-600">
-                  O problema
-                </p>
-                <h2 className="mt-3 max-w-4xl text-3xl font-black leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-                  {section.painTitle}
-                </h2>
-                <div className="mt-5 max-w-2xl space-y-2 text-sm leading-6 text-zinc-600 sm:text-base">
-                  <p>{section.painText}</p>
-                  <p>{section.painComplement}</p>
+            <div className="bg-white px-5 py-12 sm:px-8 sm:py-16 lg:px-8 lg:py-20">
+              <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-16">
+                <div className="max-w-3xl">
+                  <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.045em] sm:text-5xl lg:text-[54px]">
+                    {section.painTitle}
+                  </h2>
+                  <div className="mt-5 max-w-2xl space-y-2 text-sm leading-6 text-zinc-600 sm:text-base">
+                    <p>{section.painText}</p>
+                    <p>{section.painComplement}</p>
+                  </div>
                 </div>
                 {index === 0 && (
                   <button
                     onClick={() => scrollToSection("transformacao-carro")}
-                    className="mt-7 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wide text-zinc-950 underline decoration-blue-500 decoration-2 underline-offset-4"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-zinc-300 px-5 py-4 text-xs font-black uppercase tracking-wide text-zinc-950 transition hover:border-zinc-950 sm:w-auto"
                   >
                     VER COMO RESOLVER
                     <ArrowDown size={15} />
@@ -444,27 +422,23 @@ function App() {
               <ImageStory
                 src={section.solutionImage}
                 alt={`${section.eyebrow} — resultado da limpeza`}
-                eyebrow={section.eyebrow}
-                label="Solução"
-                labelClass="bg-[#16A34A] text-white"
                 objectPosition="center"
               />
 
-              <div className="bg-zinc-50 px-5 py-10 sm:px-8 sm:py-14 lg:px-8 lg:py-16">
-                <div className="mx-auto max-w-5xl">
-                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#16A34A]">
-                    A transformação
-                  </p>
-                  <h2 className="mt-3 max-w-4xl text-3xl font-black leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-                    {section.solutionTitle}
-                  </h2>
-                  <div className="mt-5 max-w-2xl space-y-2 text-sm leading-6 text-zinc-600 sm:text-base">
-                    <p>{section.solutionText}</p>
-                    {section.solutionComplement && <p>{section.solutionComplement}</p>}
+              <div className="bg-zinc-50 px-5 py-12 sm:px-8 sm:py-16 lg:px-8 lg:py-20">
+                <div className="mx-auto flex max-w-6xl flex-col gap-7 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+                  <div className="max-w-3xl">
+                    <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.045em] sm:text-5xl lg:text-[54px]">
+                      {section.solutionTitle}
+                    </h2>
+                    <div className="mt-5 max-w-2xl space-y-2 text-sm leading-6 text-zinc-600 sm:text-base">
+                      <p>{section.solutionText}</p>
+                      {section.solutionComplement && <p>{section.solutionComplement}</p>}
+                    </div>
                   </div>
                   <button
                     onClick={buy}
-                    className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#16A34A] px-6 py-4 text-xs font-black uppercase tracking-wide text-white shadow-lg shadow-green-700/10 transition hover:bg-[#15803D] sm:w-auto"
+                    className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-[#16A34A] px-6 py-4 text-xs font-black uppercase tracking-wide text-white shadow-lg shadow-green-700/10 transition hover:bg-[#15803D] sm:w-auto"
                   >
                     {index === 0
                       ? "QUERO MEU TURBOCLEAN"
