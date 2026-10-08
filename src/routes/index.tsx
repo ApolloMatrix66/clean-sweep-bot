@@ -351,24 +351,87 @@ function App() {
           </div>
         </section>
 
-        <section className="px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+        <section className="border-y border-zinc-200 bg-zinc-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl">
+            <div className="mx-auto max-w-3xl text-center">
               <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">
-                Antes × Depois
+                O problema → A solução
               </p>
               <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] sm:text-5xl">
-                Veja onde o TurboClean faz diferença.
+                Você também sofre com isso?
               </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base">
-                Três situações comuns organizadas em um único bloco visual,
-                sem excesso de texto e sem interromper a jornada de compra.
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base">
+                Algumas sujeiras parecem pequenas, mas ficam justamente nos
+                lugares mais difíceis de alcançar.
               </p>
             </div>
 
-            <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
-              {comparisons.map((item) => (
-                <ComparisonCard key={item.problem} item={item} />
+            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+              {comparisons.map((item, index) => (
+                <article
+                  key={item.problem}
+                  className="overflow-hidden rounded-[24px] border border-zinc-200 bg-white shadow-[0_12px_40px_rgba(0,0,0,0.05)]"
+                >
+                  <div className="border-b border-zinc-100 px-5 pb-4 pt-5 sm:px-6 sm:pt-6">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">
+                        Problema {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="rounded-full bg-red-50 px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-red-600">
+                        A dor
+                      </span>
+                    </div>
+                    <h3 className="mt-3 text-xl font-black tracking-tight text-zinc-950 sm:text-2xl">
+                      {item.problem}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-600">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="p-4 sm:p-5">
+                    <div className="relative overflow-hidden rounded-2xl bg-zinc-100">
+                      <img
+                        src={item.imageBefore}
+                        alt={`Problema: ${item.problem}`}
+                        className="aspect-[16/10] h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1.5 text-[9px] font-black uppercase tracking-wide text-red-600 shadow-sm">
+                        Antes
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-center py-3">
+                      <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.16em] text-zinc-400">
+                        <span className="h-px w-8 bg-zinc-200 sm:w-12" />
+                        Depois
+                        <span className="h-px w-8 bg-zinc-200 sm:w-12" />
+                      </div>
+                    </div>
+
+                    <div className="relative overflow-hidden rounded-2xl bg-zinc-100">
+                      <img
+                        src={item.imageAfter}
+                        alt={`Solução TurboClean para ${item.problem}`}
+                        className="aspect-[16/10] h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="absolute left-3 top-3 rounded-full bg-zinc-950/90 px-2.5 py-1.5 text-[9px] font-black uppercase tracking-wide text-white shadow-sm">
+                        Solução · TurboClean
+                      </span>
+                    </div>
+
+                    <div className="mt-4 flex items-center gap-2 rounded-xl bg-green-50 px-4 py-3">
+                      <Check className="h-4 w-4 shrink-0 text-[#16A34A]" strokeWidth={3} />
+                      <p className="text-xs font-bold leading-5 text-zinc-800">
+                        Mais praticidade para remover a sujeira onde ela costuma se esconder.
+                      </p>
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
