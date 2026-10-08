@@ -400,7 +400,7 @@ function App() {
                 O problema → A solução
               </p>
               <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">
-                Você também sofre com isso?
+                Veja a Diferença Real na Prática
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-400 sm:text-base">
                 Primeiro você reconhece o problema. Logo abaixo, veja como o TurboClean facilita a solução.
