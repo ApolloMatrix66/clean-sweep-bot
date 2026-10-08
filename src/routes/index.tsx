@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   BatteryCharging,
@@ -113,7 +113,7 @@ function ProductGallery() {
 
   return (
     <div className="min-w-0">
-      <div className="relative overflow-hidden rounded-[24px] border border-zinc-800 bg-white shadow-[0_18px_60px_rgba(0,0,0,0.35)] sm:rounded-[28px]">
+      <div className="relative overflow-hidden rounded-[24px] border border-zinc-200 bg-white shadow-[0_18px_60px_rgba(0,0,0,0.35)] sm:rounded-[28px]">
         <div className="flex aspect-square items-center justify-center bg-white sm:aspect-[1.08/1]">
           <img
             src={gallery[active]}
@@ -180,7 +180,7 @@ function SecurityBadges() {
   return (
     <div className="grid grid-cols-3 divide-x divide-zinc-200 border-y border-zinc-200">
       <div className="flex flex-col items-center gap-1.5 px-2 py-4 text-center">
-        <Truck className="h-4 w-4 text-blue-600" />
+        <Truck className="h-4 w-4 text-emerald-700" />
         <span className="text-[9px] font-black uppercase tracking-wide text-zinc-600">
           Frete grátis
         </span>
@@ -250,12 +250,10 @@ function ComparisonCard({
 }
 
 function App() {
-  useEffect(() => { const id = "turboclean-manrope"; if (!document.getElementById(id)) { const link = document.createElement("link"); link.id=id; link.rel="stylesheet"; link.href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"; document.head.appendChild(link); } }, []);
-
   return (
     <div style={{ fontFamily: '"Manrope", ui-sans-serif, system-ui, sans-serif' }} className="min-h-screen bg-white pb-20 text-zinc-950 antialiased md:pb-0">
-      <div className="bg-emerald-600 px-4 py-2.5 text-center text-[9px] font-black uppercase tracking-[0.18em] text-white sm:text-[10px]">
-        OFERTA ESPECIAL <span className="mx-1.5 text-blue-400">•</span> FRETE GRÁTIS
+      <div className="sticky top-0 z-50 bg-emerald-600 px-4 py-2.5 text-center text-[9px] font-black uppercase tracking-[0.18em] text-white sm:text-[10px]">
+        OFERTA ESPECIAL <span className="mx-1.5 text-white">•</span> FRETE GRÁTIS
       </div>
 
       <header className="border-b border-zinc-200 bg-white/95 backdrop-blur">
@@ -270,7 +268,7 @@ function App() {
               <Zap size={16} fill="currentColor" />
             </span>
             <span>
-              <span className="block text-sm font-black tracking-tight text-white">
+              <span className="block text-sm font-black tracking-tight text-zinc-950">
                 TurboClean
               </span>
               <span className="block text-[8px] font-bold uppercase tracking-[0.24em] text-zinc-400">
@@ -290,7 +288,7 @@ function App() {
       </header>
 
       <main>
-        <section className="bg-[#09090b] px-4 py-5 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
+        <section className="bg-white px-4 py-7 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
           <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1.08fr_.92fr] lg:gap-14">
             <ProductGallery />
 
@@ -317,7 +315,7 @@ function App() {
                   "Recarga USB-C",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-700">
                       <Check size={12} strokeWidth={3} />
                     </span>
                     {item}
@@ -388,7 +386,7 @@ function App() {
                 <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-600">
                   Especificações
                 </p>
-                <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl">
+                <h2 className="mt-3 text-4xl font-black leading-[0.98] tracking-[-0.05em] text-zinc-950 sm:text-5xl">
                   Feito para facilitar.
                 </h2>
                 <p className="mt-5 max-w-md text-sm leading-6 text-zinc-600 sm:text-base">
@@ -396,7 +394,7 @@ function App() {
                   espaço.
                 </p>
 
-                <div className="mt-8 rounded-2xl border border-zinc-800 bg-[#f7f7f5] p-5">
+                <div className="mt-8 rounded-2xl border border-zinc-200 bg-[#f7f7f5] p-5">
                   <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wide">
                     <PackageCheck size={17} className="text-[#16A34A]" />
                     O que vem na caixa
@@ -405,7 +403,7 @@ function App() {
                     {includedItems.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-2.5 text-sm font-semibold text-zinc-200"
+                        className="flex items-start gap-2.5 text-sm font-semibold text-zinc-700"
                       >
                         <Check
                           size={16}
@@ -489,7 +487,7 @@ function App() {
           className="bg-zinc-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-8 lg:py-24"
         >
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-blue-300">
+            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-300">
               Oferta TurboClean Pro Max
             </p>
             <h2 className="mt-4 text-4xl font-black leading-[0.98] tracking-[-0.05em] sm:text-6xl">
@@ -536,7 +534,7 @@ function App() {
               <Zap size={14} fill="currentColor" />
             </span>
             <div>
-              <p className="text-sm font-black text-white">TurboClean Pro Max</p>
+              <p className="text-sm font-black text-zinc-950">TurboClean Pro Max</p>
               <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">
                 Compra segura
               </p>
@@ -554,7 +552,7 @@ function App() {
         </div>
       </footer>
 
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-800 bg-[#09090b]/95 p-2.5 shadow-[0_-8px_30px_rgba(0,0,0,0.12)] backdrop-blur md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-800 bg-white/95 p-2.5 shadow-[0_-8px_30px_rgba(15,23,42,0.10)] backdrop-blur md:hidden">
         <button
           type="button"
           onClick={buy}
