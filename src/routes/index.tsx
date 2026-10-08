@@ -191,15 +191,19 @@ function ImageStory({
   objectPosition?: string;
 }) {
   return (
-    <div className="relative h-[54vh] min-h-[340px] w-full overflow-hidden bg-zinc-100 sm:h-[62vh] sm:min-h-[500px] lg:h-[72vh] lg:min-h-[620px]">
-      <img
-        src={src}
-        alt={alt}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        className="h-full w-full object-cover"
-        style={{ objectPosition }}
-      />
+    <div className="bg-zinc-50 px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-[24px] bg-white shadow-[0_18px_60px_rgba(0,0,0,0.08)] sm:rounded-[30px]">
+        <div className="relative h-[48vh] min-h-[320px] w-full sm:h-[58vh] sm:min-h-[480px] lg:h-[68vh] lg:min-h-[600px]">
+          <img
+            src={src}
+            alt={alt}
+            loading={priority ? "eager" : "lazy"}
+            decoding="async"
+            className="h-full w-full object-cover"
+            style={{ objectPosition }}
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -384,21 +388,21 @@ function App() {
         </section>
 
         {painSections.map((section, index) => (
-          <section key={section.id} id={section.id} className="scroll-mt-10">
+          <section key={section.id} id={section.id} className="scroll-mt-10 border-t border-zinc-200">
             <ImageStory
               src={section.painImage}
-              alt={`${section.eyebrow} — situação antes da limpeza`}
+              alt={`${section.painTitle} — situação antes da limpeza`}
               priority={index === 0}
               objectPosition="center"
             />
 
-            <div className="bg-white px-5 py-12 sm:px-8 sm:py-16 lg:px-8 lg:py-20">
-              <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-16">
+            <div className="bg-white px-5 py-14 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+              <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-20">
                 <div className="max-w-3xl">
-                  <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.045em] sm:text-5xl lg:text-[54px]">
+                  <h2 className="max-w-4xl text-3xl font-black leading-[1.02] tracking-[-0.045em] sm:text-5xl lg:text-[52px]">
                     {section.painTitle}
                   </h2>
-                  <div className="mt-5 max-w-2xl space-y-2 text-sm leading-6 text-zinc-600 sm:text-base">
+                  <div className="mt-6 max-w-2xl space-y-3 text-sm leading-7 text-zinc-600 sm:text-base">
                     <p>{section.painText}</p>
                     <p>{section.painComplement}</p>
                   </div>
@@ -418,17 +422,17 @@ function App() {
             <div id={index === 0 ? "transformacao-carro" : undefined} className="scroll-mt-10">
               <ImageStory
                 src={section.solutionImage}
-                alt={`${section.eyebrow} — resultado da limpeza`}
+                alt={`${section.solutionTitle} — resultado da limpeza`}
                 objectPosition="center"
               />
 
-              <div className="bg-zinc-50 px-5 py-12 sm:px-8 sm:py-16 lg:px-8 lg:py-20">
-                <div className="mx-auto flex max-w-6xl flex-col gap-7 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+              <div className="bg-zinc-50 px-5 py-14 sm:px-8 sm:py-20 lg:px-8 lg:py-24">
+                <div className="mx-auto flex max-w-6xl flex-col gap-9 lg:flex-row lg:items-end lg:justify-between lg:gap-20">
                   <div className="max-w-3xl">
-                    <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.045em] sm:text-5xl lg:text-[54px]">
+                    <h2 className="max-w-4xl text-3xl font-black leading-[1.02] tracking-[-0.045em] sm:text-5xl lg:text-[52px]">
                       {section.solutionTitle}
                     </h2>
-                    <div className="mt-5 max-w-2xl space-y-2 text-sm leading-6 text-zinc-600 sm:text-base">
+                    <div className="mt-6 max-w-2xl space-y-3 text-sm leading-7 text-zinc-600 sm:text-base">
                       <p>{section.solutionText}</p>
                       {section.solutionComplement && <p>{section.solutionComplement}</p>}
                     </div>
